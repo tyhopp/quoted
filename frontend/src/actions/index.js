@@ -54,3 +54,18 @@ export function fetchPosts (posts) {
 			   	})
 	}
 }
+
+/* CREATE POST
+**************************************************************/
+
+export const CREATE_POST = 'CREATE_POST';
+function createPost (posts, post) {
+	return {
+		type: CREATE_POST,
+		posts,
+		post
+	}
+}
+
+
+

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 // icons
 import FaQuoteLeft from 'react-icons/lib/fa/quote-left'
@@ -51,7 +52,15 @@ class PostCardEditor extends Component {
 										<div className="postEditorReplyRow">
 											<div className="postEditorReplyName">
 												<div className="postEditorReplyNamePrompt">
-													Name 
+													Author
+												</div>
+												<input type="text" />
+											</div>
+										</div>
+										<div className="postEditorReplyRow">
+											<div className="postEditorReplyName">
+												<div className="postEditorReplyNamePrompt">
+													Title
 												</div>
 												<input type="text" />
 											</div>
@@ -59,10 +68,17 @@ class PostCardEditor extends Component {
 										<div className="postEditorReplyRow">
 											<div className="postEditorReplyContent">
 												<div className="postEditorReplyContentPrompt">
-													Reply
+													Content
 												</div>
 												<textarea className="postEditorReplyInput" type="text" />
 											</div>
+										</div>
+										<div className="postEditorReplyRow">
+											<select name="Category">
+											<option value="value1">People</option> 
+											<option value="value2">Places</option>
+											<option value="value3">Things</option>
+											</select>
 										</div>
 										<div className="postEditorRow">
 											<button className="postEditorReplyToCommentAlign">
@@ -85,4 +101,4 @@ class PostCardEditor extends Component {
 
 
 
-export default PostCardEditor
+export default connect()(PostCardEditor)
