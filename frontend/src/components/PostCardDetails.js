@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 
 // utils
 import { capitalize, convertTimeStamp } from '../utils/helpers'
@@ -16,6 +15,19 @@ import '../styles/All.css'
 import '../styles/PostCardDetails.css';
 
 class PostCardDetails extends Component {
+	constructor(props) {
+		super(props);
+		// binds 'this' to this PostCardDetails component
+		this._handleDetailsModal = this._handleDetailsModal.bind(this);
+	}
+
+	state = {
+		detailsPostModalOpen: this.props.detailsPosetModalOpen,
+	}
+
+	_handleDetailsModal() {
+		this.props.closeDetailsModal()
+	}
 
     render() {
     const { post } = this.props
@@ -36,7 +48,7 @@ class PostCardDetails extends Component {
 								</div>
 							</div>
 							<button className="gold"
-									onClick={this.closeDetailsPostModal}>
+									onClick={this._handleDetailsModal}>
 								<FaClose />
 							</button>
 						</div>

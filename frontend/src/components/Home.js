@@ -19,6 +19,11 @@ import '../styles/All.css'
 
 
 class Home extends Component {
+	constructor(props) {
+		super(props);
+		// binds 'this' to this component
+		this.closeDetailsModal = this.closeDetailsModal.bind(this);
+	}
 
 	state = {
 		loadingCreatePost: false,
@@ -35,7 +40,9 @@ class Home extends Component {
 			displayedPost: post
 		})
 	}
-	closeDetailsPostModal = () => this.setState(() => ({ detailsPostModalOpen: false }))
+	closeDetailsModal() {
+        this.setState({ detailsPostModalOpen: false })
+    }
 	openCreatePostModal = () => this.setState(() => ({ createPostModalOpen: true }))
 	closeCreatePostModal = () => this.setState(() => ({ createPostModalOpen: false }))
 
@@ -80,7 +87,10 @@ class Home extends Component {
 								</div>
 							:   <div>
 							    	<div className="postEditorBg" />
-									<PostCardDetails post={this.state.displayedPost}/>
+									<PostCardDetails post={this.state.displayedPost}
+													 closeDetailsModal={this.closeDetailsModal}
+													 detailsPostModalOpen={this.state.detailsPostModalOpen}
+									/>
 								</div>
 						}
 					</div>
