@@ -75,9 +75,9 @@ class PostCardEditor extends Component {
 										</div>
 										<div className="postEditorReplyRow">
 											<select name="Category">
-											<option value="value1">People</option> 
-											<option value="value2">Places</option>
-											<option value="value3">Things</option>
+												<option value="value1">People</option> 
+												<option value="value2">Places</option>
+												<option value="value3">Things</option>
 											</select>
 										</div>
 										<div className="postEditorRow">

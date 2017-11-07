@@ -14,9 +14,10 @@ function posts (state = initialState, action) {
         case RECEIVE_POSTS :
             return Object.assign({}, state, {posts: action.posts})
         case CREATE_POST : 
-        	return Object.assign({}, state, {
-        		posts: action.posts
-        	})
+			return {
+				...state,
+				// then what?
+			}
         default : 
             return state;
     }

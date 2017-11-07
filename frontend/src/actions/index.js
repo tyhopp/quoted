@@ -1,24 +1,6 @@
-/* API
-**************************************************************/
+import * as API from '../utils/api.js'
 
-// Defined API functions to be used in frontend
 
-const API = "http://localhost:3001"
-
-let token = localStorage.token
-if (!token) {
-	token = localStorage.token = Math.random().toString(36).substr(-8)
-}
-
-const headers = {
-	'Accept': 'application/json',
-	'Authorization': token
-}
-
-// gets all posts
-const getAllPosts = token => (
-	fetch(`${API}/posts`, { method: 'GET', headers })
-);
 
 /* RECEIVE ALL POSTS
 **************************************************************/
@@ -44,7 +26,7 @@ function receivePosts (posts) {
 export function fetchPosts (posts) {
 	return function (dispatch) {
 		dispatch(requestPosts(posts))
-		return getAllPosts()
+		return API.getAllPosts()
 			   .then(
 			   		res => res.json(),
 			   		error => console.log('An error occured.', error)
