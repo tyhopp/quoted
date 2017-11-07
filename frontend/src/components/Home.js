@@ -28,26 +28,28 @@ class Home extends Component {
 	state = {
 		loadingCreatePost: false,
 		loadingDetailsPost: false,
-		createPostModalOpen: false,
-		detailsPostModalOpen: false,
+		createModalOpen: false,
+		detailsModalOpen: false,
 		displayedPost: undefined
 	}
 
-	openDetailsPostModal = (post) => {
+	openDetailsModal = (post) => {
 		this.setState({
 			...this.state,
-			detailsPostModalOpen: true,
+			detailsModalOpen: true,
 			displayedPost: post
 		})
 	}
 	closeDetailsModal() {
-        this.setState({ detailsPostModalOpen: false })
+        this.setState({ detailsModalOpen: false })
     }
-	openCreatePostModal = () => this.setState(() => ({ createPostModalOpen: true }))
-	closeCreatePostModal = () => this.setState(() => ({ createPostModalOpen: false }))
+	openCreateModal = () => this.setState(() => ({ createModalOpen: true }))
+	closeCreateModal() {
+        this.setState({ createModalOpen: false })
+    }
 
 	render() {
-		const { loadingDetailsPost, loadingCreatePost, detailsPostModalOpen, createPostModalOpen } = this.state
+		const { loadingDetailsPost, loadingCreatePost, detailsModalOpen, createModalOpen } = this.state
 		const { posts } = this.props.posts
 
 		return (
@@ -56,7 +58,7 @@ class Home extends Component {
 				<div className="postListContainer">
 					<div className="postListRow">
 						{posts.map((post) => (
-							<div key={post.id} onClick={() => this.openDetailsPostModal(post)}>
+							<div key={post.id} onClick={() => this.openDetailsModal(post)}>
 								{/* map id: {post.id} */}
 								<PostCard post={post} />
 							</div>
@@ -64,15 +66,15 @@ class Home extends Component {
 					</div>
 				</div>
 				<button className="newPostButton"
-						onClick={this.openCreatePostModal}>
+						onClick={this.openCreateModal}>
 					<MdAddCircle />
 				</button>
 				
 				<Modal // VIEW POST DETAILS MODAL
 		          className='modal'
 		          overlayClassName='createOverlay'
-		          isOpen={detailsPostModalOpen}
-		          onRequestClose={this.closeDetailsPostModal}
+		          isOpen={detailsModalOpen}
+		          onRequestClose={this.closeDetailsModal}
 		          contentLabel='Modal'
 		        >
 					<div>
@@ -89,7 +91,7 @@ class Home extends Component {
 							    	<div className="postEditorBg" />
 									<PostCardDetails post={this.state.displayedPost}
 													 closeDetailsModal={this.closeDetailsModal}
-													 detailsPostModalOpen={this.state.detailsPostModalOpen}
+													 detailsPostModalOpen={this.state.detailsModalOpen}
 									/>
 								</div>
 						}
@@ -99,8 +101,8 @@ class Home extends Component {
 				<Modal // CREATE POST MODAL
 		          className='modal'
 		          overlayClassName='createOverlay'
-		          isOpen={createPostModalOpen}
-		          onRequestClose={this.closeCreatePostModal}
+		          isOpen={createModalOpen}
+		          onRequestClose={this.closeCreateModal}
 		          contentLabel='Modal'
 		        >
 					<div>

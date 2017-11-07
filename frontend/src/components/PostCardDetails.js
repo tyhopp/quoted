@@ -22,7 +22,7 @@ class PostCardDetails extends Component {
 	}
 
 	state = {
-		detailsPostModalOpen: this.props.detailsPosetModalOpen,
+		detailsModalOpen: this.props.detailsModalOpen,
 	}
 
 	_handleDetailsModal() {
