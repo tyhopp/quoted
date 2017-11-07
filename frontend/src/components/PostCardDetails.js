@@ -34,188 +34,188 @@ class PostCardDetails extends Component {
 
 	    return (
 	    	<div>
-					<div key={post.id} className="postEditorContainer">
-						<div className="postEditorHeader">
-							<div className="white">
-								<div className="postEditorAuthorAlign">
-									<MdAccountCircle />
-									<div key={post.author} className="postEditorAuthor">
-										{capitalize(post.author)}
-									</div>
-									<div key={post.timestamp} className="postEditorAuthor">
-										/ {convertTimeStamp(post)}
+				<div key={post.id} className="postEditorContainer">
+					<div className="postEditorHeader">
+						<div className="white">
+							<div className="postEditorAuthorAlign">
+								<MdAccountCircle />
+								<div key={post.author} className="postEditorAuthor">
+									{capitalize(post.author)}
+								</div>
+								<div key={post.timestamp} className="postEditorAuthor">
+									/ {convertTimeStamp(post)}
+								</div>
+							</div>
+						</div>
+						<button className="gold"
+								onClick={this._handleDetailsModal}>
+							<FaClose />
+						</button>
+					</div>
+					<div className="postEditorMain">
+						<div className="postEditorRow">
+							<div key={post.title} className="postEditorTitle">
+								{capitalize(post.title)}
+							</div>
+						</div>
+						<div className="postEditorRow">
+							<div className="postEditorActionItems">
+								<div className="postEditorActionItem">
+				        			<div key={post.commentCount} className="actionCommentCount">
+				        				{post.commentCount}
+				        			</div>
+				        			<div className="actionComment">
+				        				<FaQuoteLeft />
+				        			</div>
+				        		</div>
+				        		<div className="postEditorActionItem">
+									<button className="postEditorThumbsUp">
+										<FaThumbsUp />
+									</button>
+								</div>
+								<div className="postEditorActionItem">
+									<button className="postEditorThumbsDown">
+										<FaThumbsDown />
+									</button>
+								</div>
+								<div className="postEditorActionItem">
+									<div className="postEditorVoteScore">
+				                        <div key={post.voteScore} className="postEditorVoteScoreCount">
+				                            {post.voteScore}
+				                        </div>
+				                    </div>
+				                </div>
+				                <div className="postEditorActionItem">
+									<div key={post.category} className="postEditorCategory">
+										{capitalize(post.category)}
 									</div>
 								</div>
 							</div>
-							<button className="gold"
-									onClick={this._handleDetailsModal}>
-								<FaClose />
+						</div>
+						<div className="postEditorRow">
+							<div key={post.body} className="postEditorBody">
+								{capitalize(post.body)}
+							</div>
+						</div>
+						<div className="postEditorRow">
+							<button className="gold">
+								Edit
 							</button>
 						</div>
-						<div className="postEditorMain">
-							<div className="postEditorRow">
-								<div key={post.title} className="postEditorTitle">
-									{capitalize(post.title)}
+						<div className="postEditorRow">
+							<div className="postEditorLineBreak" />
+						</div>
+						<div className="postEditorRow">
+							<div className="postEditorCommentTitleAlign">
+								<div className="gold">
+									<FaQuoteLeft />
+								</div>
+								<div className="postEditorCommentTitle">
+									Leave a reply
 								</div>
 							</div>
-							<div className="postEditorRow">
-								<div className="postEditorActionItems">
-									<div className="postEditorActionItem">
-					        			<div key={post.commentCount} className="actionCommentCount">
-					        				{post.commentCount}
-					        			</div>
-					        			<div className="actionComment">
-					        				<FaQuoteLeft />
-					        			</div>
-					        		</div>
-					        		<div className="postEditorActionItem">
-										<button className="postEditorThumbsUp">
-											<FaThumbsUp />
-										</button>
-									</div>
-									<div className="postEditorActionItem">
-										<button className="postEditorThumbsDown">
-											<FaThumbsDown />
-										</button>
-									</div>
-									<div className="postEditorActionItem">
-										<div className="postEditorVoteScore">
-					                        <div key={post.voteScore} className="postEditorVoteScoreCount">
-					                            {post.voteScore}
-					                        </div>
-					                    </div>
-					                </div>
-					                <div className="postEditorActionItem">
-										<div key={post.category} className="postEditorCategory">
-											{capitalize(post.category)}
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="postEditorRow">
-								<div key={post.body} className="postEditorBody">
-									{capitalize(post.body)}
-								</div>
-							</div>
-							<div className="postEditorRow">
-								<button className="gold">
-									Edit
-								</button>
-							</div>
-							<div className="postEditorRow">
-								<div className="postEditorLineBreak" />
-							</div>
-							<div className="postEditorRow">
-								<div className="postEditorCommentTitleAlign">
-									<div className="gold">
-										<FaQuoteLeft />
-									</div>
-									<div className="postEditorCommentTitle">
-										Leave a reply
-									</div>
-								</div>
-							</div>
-							<div className="postEditorReplyBlock">
-								<div className="postEditorReplyBlockAlign">
-									<div className="postEditorRow">
-										<div className="postEditorReplyMain">
-											<div className="postEditorReplyRow">
-												<div className="postEditorReplyName">
-													<div className="postEditorReplyNamePrompt">
-														Name 
-													</div>
-													<input type="text" />
+						</div>
+						<div className="postEditorReplyBlock">
+							<div className="postEditorReplyBlockAlign">
+								<div className="postEditorRow">
+									<div className="postEditorReplyMain">
+										<div className="postEditorReplyRow">
+											<div className="postEditorReplyName">
+												<div className="postEditorReplyNamePrompt">
+													Name 
 												</div>
-											</div>
-											<div className="postEditorReplyRow">
-												<div className="postEditorReplyContent">
-													<div className="postEditorReplyContentPrompt">
-														Reply
-													</div>
-													<textarea className="postEditorReplyInput" type="text" />
-												</div>
-											</div>
-											<div className="postEditorRow">
-												<button className="postEditorReplyToCommentAlign">
-													<div className="postEditorReplyToCommentText gold">
-														Submit
-													</div>
-												</button>
+												<input type="text" />
 											</div>
 										</div>
-									</div>
-								</div>
-							</div>{/* REPLY BLOCK END */}
-							<div className="postEditorRow">
-								<div className="postEditorCommentTitleAlign">
-									<div className="gold">
-										<FaQuoteLeft />
-									</div>
-									<div className="postEditorCommentTitle">
-										Comments
-									</div>
-								</div>
-							</div>
-							<div className="postEditorCommentBlock">
-								<div className="postEditorCommentBlockAlign">
-									<div className="postEditorRow">
-										<div className="postEditorCommentMain">
-											<div className="postEditorCommentText">
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur commodo, orci a placerat accumsan, erat quam placerat lacus, et fringilla nunc lorem eget lectus. Donec posuere neque nec rhoncus m
+										<div className="postEditorReplyRow">
+											<div className="postEditorReplyContent">
+												<div className="postEditorReplyContentPrompt">
+													Reply
+												</div>
+												<textarea className="postEditorReplyInput" type="text" />
 											</div>
-											<button className="postEditorCommentClose">
-												<FaClose />
+										</div>
+										<div className="postEditorRow">
+											<button className="postEditorReplyToCommentAlign">
+												<div className="postEditorReplyToCommentText gold">
+													Submit
+												</div>
 											</button>
 										</div>
-										<div className="postEditorRow">
-											<div className="postEditorCommentActionItems">
-												<div className="postEditorAuthorAlign postEditorActionItem">
-													<MdAccountCircle />
-													<div className="postEditorAuthor">
-														Jane
-													</div>
-													<div className="postEditorAuthor">
-														/ Jan 12 @ 4PM
-													</div>
-												</div>
-						                		<div className="postEditorActionItem">
-													<button className="postEditorThumbsUp">
-														<FaThumbsUp />
-													</button>
-												</div>
-												<div className="postEditorActionItem">
-													<button className="postEditorThumbsDown">
-														<FaThumbsDown />
-													</button>
-												</div>
-												<div className="postEditorActionItem">
-													<div className="postEditorVoteScore">
-							                            <div className="postEditorVoteScoreCount">
-							                                +8
-							                            </div>
-							                        </div>
-							                    </div>
-											</div>
+									</div>
+								</div>
+							</div>
+						</div>{/* REPLY BLOCK END */}
+						<div className="postEditorRow">
+							<div className="postEditorCommentTitleAlign">
+								<div className="gold">
+									<FaQuoteLeft />
+								</div>
+								<div className="postEditorCommentTitle">
+									Comments
+								</div>
+							</div>
+						</div>
+						<div className="postEditorCommentBlock">
+							<div className="postEditorCommentBlockAlign">
+								<div className="postEditorRow">
+									<div className="postEditorCommentMain">
+										<div className="postEditorCommentText">
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur commodo, orci a placerat accumsan, erat quam placerat lacus, et fringilla nunc lorem eget lectus. Donec posuere neque nec rhoncus m
 										</div>
-										<div className="postEditorRow">
-											<div className="postEditorActionOnComment">
-												<button className="postEditorReplyToCommentAlign marg">
-													<div className="postEditorReplyToCommentText gold">
-														Reply
-													</div>
-												</button>
-												<button className="postEditorReplyToCommentAlign marg">
-													<div className="postEditorReplyToCommentText gold">
-														Edit
-													</div>
+										<button className="postEditorCommentClose">
+											<FaClose />
+										</button>
+									</div>
+									<div className="postEditorRow">
+										<div className="postEditorCommentActionItems">
+											<div className="postEditorAuthorAlign postEditorActionItem">
+												<MdAccountCircle />
+												<div className="postEditorAuthor">
+													Jane
+												</div>
+												<div className="postEditorAuthor">
+													/ Jan 12 @ 4PM
+												</div>
+											</div>
+					                		<div className="postEditorActionItem">
+												<button className="postEditorThumbsUp">
+													<FaThumbsUp />
 												</button>
 											</div>
+											<div className="postEditorActionItem">
+												<button className="postEditorThumbsDown">
+													<FaThumbsDown />
+												</button>
+											</div>
+											<div className="postEditorActionItem">
+												<div className="postEditorVoteScore">
+						                            <div className="postEditorVoteScoreCount">
+						                                +8
+						                            </div>
+						                        </div>
+						                    </div>
+										</div>
+									</div>
+									<div className="postEditorRow">
+										<div className="postEditorActionOnComment">
+											<button className="postEditorReplyToCommentAlign marg">
+												<div className="postEditorReplyToCommentText gold">
+													Reply
+												</div>
+											</button>
+											<button className="postEditorReplyToCommentAlign marg">
+												<div className="postEditorReplyToCommentText gold">
+													Edit
+												</div>
+											</button>
 										</div>
 									</div>
 								</div>
-							</div>{/* COMMENT BLOCK END */}
-						</div>
+							</div>
+						</div>{/* COMMENT BLOCK END */}
 					</div>
+				</div>
 			</div>
 		)
 	}

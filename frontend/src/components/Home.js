@@ -23,6 +23,7 @@ class Home extends Component {
 		super(props);
 		// binds 'this' to this component
 		this.closeDetailsModal = this.closeDetailsModal.bind(this);
+		this.closeCreateModal = this.closeCreateModal.bind(this);
 	}
 
 	state = {
@@ -91,7 +92,7 @@ class Home extends Component {
 							    	<div className="postEditorBg" />
 									<PostCardDetails post={this.state.displayedPost}
 													 closeDetailsModal={this.closeDetailsModal}
-													 detailsPostModalOpen={this.state.detailsModalOpen}
+													 detailsModalOpen={this.state.detailsModalOpen}
 									/>
 								</div>
 						}
@@ -117,7 +118,9 @@ class Home extends Component {
 								</div>
 							:   <div>
 							    	<div className="postEditorBg" /> 
-									<PostCardEditor />
+									<PostCardEditor closeCreateModal={this.closeCreateModal}
+													createModalOpen={this.state.createModalOpen}
+									/>
 								</div>
 						}
 					</div>
