@@ -21,6 +21,7 @@ export const getAllPosts = token => (
 );
 
 // create a post
-export const createAPost = token => (
-	fetch(`${API}/posts`, {method: 'POST', headers })
+export const createAPost = (token, post) => (
+	console.log('Inside the API: ', post),
+	fetch(`${API}/posts`, {method: 'POST', body: JSON.stringify({ post }), headers })
 );

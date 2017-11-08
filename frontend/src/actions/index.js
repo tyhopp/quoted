@@ -50,6 +50,7 @@ function createPostSuccess(post) {
 }
 
 export function createPost(values) { // values from redux-form
+    
     const { title, body, author } = values
     console.log('Values: ', title, body, author)
     const post = {
@@ -63,14 +64,16 @@ export function createPost(values) { // values from redux-form
     console.log('New Post: ', post) // returns expected
         
     return dispatch => {
-		return API.createAPost()
-			   .then(
+    	console.log('Is post here?', post) // yes, returns expected
+		return API.createAPost(post)
+				.then(
 			   		res => res.json(),
 			   		error => console.log('An error occured.', error)
 			   	)
-			   .then(post => {
-			   		dispatch(createPostSuccess(post))
-			   	})
+			   	.then(res => console.log('YAYA', res))
+				.then(post => {
+					dispatch(createPostSuccess(post))
+				})
     }
 }
 
