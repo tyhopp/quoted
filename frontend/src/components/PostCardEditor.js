@@ -14,16 +14,27 @@ class PostCardEditor extends Component {
 		super(props);
 		// binds 'this' to this PostCardDetails component
 		this._handleCreateModal = this._handleCreateModal.bind(this);
+		this._handleInput = this._handleInput.bind(this);
+		this._handleSubmit = this._handleSubmit.bind(this);
 	}
 
 	state = {
 		createModalOpen: this.props.createModalOpen,
+		authorInput: '',
 	}
 
 	_handleCreateModal() {
 		this.props.closeCreateModal()
 	}
 
+	_handleInput(event) {
+		this.setState({ authorInput: event.target.value })
+	}
+
+	_handleSubmit(event) {
+		event.preventDefault();
+		this.props.closeCreateModal()
+	}
 
     render() {
 
@@ -54,7 +65,10 @@ class PostCardEditor extends Component {
 												<div className="postEditorReplyNamePrompt">
 													Author
 												</div>
-												<input type="text" />
+												<input type="text" 
+													   value={this.state.authorInput}
+													   onChange={this._handleInput}
+												/>
 											</div>
 										</div>
 										<div className="postEditorReplyRow">
@@ -81,7 +95,7 @@ class PostCardEditor extends Component {
 											</select>
 										</div>
 										<div className="postEditorRow">
-											<button className="postEditorReplyToCommentAlign">
+											<button onClick={this._handleSubmit} className="postEditorReplyToCommentAlign">
 												<div className="postEditorReplyToCommentText gold">
 													Submit
 												</div>
