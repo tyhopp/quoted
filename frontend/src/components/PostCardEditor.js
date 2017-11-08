@@ -30,9 +30,9 @@ class PostCardEditor extends Component {
 	}
 
 	_onSubmit(values) {
-		console.log(values)
-		this.props.pushPostToStore(values) // push form values to store
-		this.props.closeCreateModal() // destroys form
+		console.log(values) // form values, returns expected
+		this.props.dispatch(createPost(values)) // push form values to store
+//		this.props.closeCreateModal() // destroys form
 	}
 
 
@@ -83,9 +83,9 @@ class PostCardEditor extends Component {
 										<div className="postEditorReplyRow">
 											<div className="postEditorReplyContent">
 												<label className="postEditorReplyContentPrompt">
-													Content
+													Body
 												</label>
-												<textarea className="postEditorReplyInput" type="text" />
+												<Field name="body" component="input" type="text"/>
 											</div>
 										</div>
 										<div className="postEditorReplyRow">
@@ -116,11 +116,13 @@ class PostCardEditor extends Component {
 }
 
 PostCardEditor = reduxForm({
-	form: 'createPostForm'
+	form: 'post'
 })(PostCardEditor)
 
-const mapDispatchToProps = dispatch => ({
-  pushPostToStore: (values) => dispatch(createPost(values))
-});
+function mapStateToProps(state) {
+	return {
+		posts: state.posts
+	}
+}
 
-export default connect(null, mapDispatchToProps)(PostCardEditor)
+export default connect()(PostCardEditor)

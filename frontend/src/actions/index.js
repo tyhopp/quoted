@@ -50,16 +50,17 @@ function createPostSuccess(post) {
 }
 
 export function createPost(values) { // values from redux-form
-    const { title, body, author, category } = values
-
+    const { title, body, author } = values
+    console.log('Values: ', title, body, author)
     const post = {
         id: uuid(),
         timestamp: Date.now(),
         title,
         body,
         author,
-        category
+     // category
     }
+    console.log('New Post: ', post) // returns expected
         
     return dispatch => {
 		return API.createAPost()
