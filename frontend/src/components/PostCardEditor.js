@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+
+// actions
+import { createPost } from '../actions'
 
 // icons
 import FaQuoteLeft from 'react-icons/lib/fa/quote-left'
@@ -14,29 +18,26 @@ class PostCardEditor extends Component {
 		super(props);
 		// binds 'this' to this PostCardDetails component
 		this._handleCreateModal = this._handleCreateModal.bind(this);
-		this._handleInput = this._handleInput.bind(this);
-		this._handleSubmit = this._handleSubmit.bind(this);
+		this._onSubmit = this._onSubmit.bind(this);
 	}
 
 	state = {
 		createModalOpen: this.props.createModalOpen,
-		authorInput: '',
 	}
 
 	_handleCreateModal() {
 		this.props.closeCreateModal()
 	}
 
-	_handleInput(event) {
-		this.setState({ authorInput: event.target.value })
+	_onSubmit(values) {
+		console.log(values)
+		this.props.pushPostToStore(values) // push form values to store
+		this.props.closeCreateModal() // destroys form
 	}
 
-	_handleSubmit(event) {
-		event.preventDefault();
-		this.props.closeCreateModal()
-	}
 
     render() {
+    	const { handleSubmit } = this.props
 
 	    return (
 	    	<div>
@@ -51,39 +52,39 @@ class PostCardEditor extends Component {
 									Write a post
 								</div>
 							</div>
-							<button className="postEditorHeaderItem gold"
-								onClick={this._handleCreateModal}>
+							<button className="postEditorHeaderItem gold">
 								<FaClose />
 							</button>
 						</div>
-						<div className="postEditorReplyBlock">
+
+						{/* REDUX FORM */}
+						<form className="postEditorReplyBlock"
+							  onSubmit={handleSubmit(this._onSubmit)}
+						>
 							<div className="postEditorReplyBlockAlign">
 								<div className="postEditorRow">
 									<div className="postEditorReplyMain">
 										<div className="postEditorReplyRow">
 											<div className="postEditorReplyName">
-												<div className="postEditorReplyNamePrompt">
+												<label className="postEditorReplyNamePrompt">
 													Author
-												</div>
-												<input type="text" 
-													   value={this.state.authorInput}
-													   onChange={this._handleInput}
-												/>
+												</label>
+												<Field name="author" component="input" type="text"/>
 											</div>
 										</div>
 										<div className="postEditorReplyRow">
 											<div className="postEditorReplyName">
-												<div className="postEditorReplyNamePrompt">
+												<label className="postEditorReplyNamePrompt">
 													Title
-												</div>
-												<input type="text" />
+												</label>
+												<Field name="title" component="input" type="text"/>
 											</div>
 										</div>
 										<div className="postEditorReplyRow">
 											<div className="postEditorReplyContent">
-												<div className="postEditorReplyContentPrompt">
+												<label className="postEditorReplyContentPrompt">
 													Content
-												</div>
+												</label>
 												<textarea className="postEditorReplyInput" type="text" />
 											</div>
 										</div>
@@ -95,7 +96,9 @@ class PostCardEditor extends Component {
 											</select>
 										</div>
 										<div className="postEditorRow">
-											<button onClick={this._handleSubmit} className="postEditorReplyToCommentAlign">
+											<button type="submit" 
+													className="postEditorReplyToCommentAlign"
+											>
 												<div className="postEditorReplyToCommentText gold">
 													Submit
 												</div>
@@ -104,15 +107,20 @@ class PostCardEditor extends Component {
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>{/* REPLY BLOCK END */}
+						</form>{/* REDUX FORM END */}
+					</div>
 				</div>
 			</div>
 		)
 	}
 }
 
+PostCardEditor = reduxForm({
+	form: 'createPostForm'
+})(PostCardEditor)
 
+const mapDispatchToProps = dispatch => ({
+  pushPostToStore: (values) => dispatch(createPost(values))
+});
 
-
-export default connect()(PostCardEditor)
+export default connect(null, mapDispatchToProps)(PostCardEditor)

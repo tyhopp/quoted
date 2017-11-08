@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { reducer as formReducer } from 'redux-form'
 import { 
 	RECEIVE_POSTS,
 	CREATE_POST
@@ -16,7 +17,7 @@ function posts (state = initialState, action) {
         case CREATE_POST : 
 			return {
 				...state,
-				// then what?
+				posts: action.posts
 			}
         default : 
             return state;
@@ -26,7 +27,8 @@ function posts (state = initialState, action) {
 
 
 const rootReducer = combineReducers({  // short hand property names
-  posts
+  posts,
+  form: formReducer
 })
 
 export default rootReducer

@@ -19,3 +19,8 @@ const headers = {
 export const getAllPosts = token => (
 	fetch(`${API}/posts`, { method: 'GET', headers })
 );
+
+// create a post
+export const createAPost = token => (
+	fetch(`${API}/posts`, {method: 'POST', headers })
+);

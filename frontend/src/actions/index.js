@@ -1,4 +1,5 @@
 import * as API from '../utils/api.js'
+import { uuid } from '../utils/helpers.js'
 
 
 
@@ -41,13 +42,37 @@ export function fetchPosts (posts) {
 **************************************************************/
 
 export const CREATE_POST = 'CREATE_POST';
-function createPost (posts, post) {
-	return {
-		type: CREATE_POST,
-		posts,
-		post
-	}
+function createPostSuccess(post) {
+    return {
+        type: CREATE_POST,
+        post
+    }
 }
+
+export function createPost(values) { // values from redux-form
+    const { title, body, author, category } = values
+
+    const post = {
+        id: uuid(),
+        timestamp: Date.now(),
+        title,
+        body,
+        author,
+        category
+    }
+        
+    return dispatch => {
+		return API.createAPost()
+			   .then(
+			   		res => res.json(),
+			   		error => console.log('An error occured.', error)
+			   	)
+			   .then(post => {
+			   		dispatch(createPostSuccess(post))
+			   	})
+    }
+}
+
 
 
 

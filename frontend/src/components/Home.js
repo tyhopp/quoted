@@ -49,6 +49,11 @@ class Home extends Component {
         this.setState({ createModalOpen: false })
     }
 
+	submit = (values) => {
+		// print the form values to the console
+		console.log(values)
+	}
+
 	render() {
 		const { loadingDetailsPost, loadingCreatePost, detailsModalOpen, createModalOpen } = this.state
 		const { posts } = this.props.posts
