@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import Modal from 'react-modal'
 import Loading from 'react-loading'
 
+// actions
+import { fetchPosts } from '../actions'
+
 // icons
 import MdAddCircle from 'react-icons/lib/md/add-circle'
 
@@ -34,6 +37,10 @@ class Home extends Component {
 		displayedPost: undefined
 	}
 
+	componentWillMount() {
+		this.props.dispatch(fetchPosts()) // fetch posts on first app load
+	}
+
 	openDetailsModal = (post) => {
 		this.setState({
 			...this.state,
@@ -57,6 +64,8 @@ class Home extends Component {
 	render() {
 		const { loadingDetailsPost, loadingCreatePost, detailsModalOpen, createModalOpen } = this.state
 		const { posts } = this.props.posts
+		console.log('Home props: ', this.props)
+		console.log('Home props in posts: ', posts)
 
 		return (
 			<div className="entirePostList">

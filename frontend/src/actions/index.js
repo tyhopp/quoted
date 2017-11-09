@@ -64,7 +64,7 @@ function createPostSuccess(post) {
 
 export function createPost(values) { // values from redux-form
     
-    const { title, body, author } = values
+    const { title, body, author, category } = values
     console.log('Values: ', title, body, author)
     const post = {
         id: uuid(),
@@ -72,7 +72,7 @@ export function createPost(values) { // values from redux-form
         title,
         body,
         author,
-     // category
+        category
     } 
 
     return dispatch => {

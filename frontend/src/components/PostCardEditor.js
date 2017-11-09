@@ -32,7 +32,7 @@ class PostCardEditor extends Component {
 	_onSubmit(values) {
 		console.log(values) // form values, returns expected
 		this.props.dispatch(createPost(values)) // push form values to store
-//		this.props.closeCreateModal() // destroys form
+		this.props.closeCreateModal() // destroys form
 	}
 
 
@@ -89,11 +89,11 @@ class PostCardEditor extends Component {
 											</div>
 										</div>
 										<div className="postEditorReplyRow">
-											<select name="Category">
-												<option value="value1">People</option> 
-												<option value="value2">Places</option>
-												<option value="value3">Things</option>
-											</select>
+											<Field name="category" component="select">
+												<option value="people">People</option> 
+												<option value="places">Places</option>
+												<option value="things">Things</option>
+											</Field>
 										</div>
 										<div className="postEditorRow">
 											<button type="submit" 

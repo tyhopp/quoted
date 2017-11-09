@@ -13,11 +13,14 @@ const initialState = {
 function posts (state = initialState, action) {
     switch(action.type) {
         case RECEIVE_POSTS :
-            return Object.assign({}, state, {posts: action.posts})
+            return {
+                ...state,
+                posts: action.posts
+            }
         case CREATE_POST : 
 			return {
 				...state,
-				posts: action.posts
+                posts: [action.post]
 			}
         default : 
             return state;

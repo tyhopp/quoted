@@ -37,8 +37,6 @@ const store = createStore(
   )
 )
 
-store.dispatch(fetchPosts()) // fetch posts on first app load
-
 
 ReactDOM.render(
 	<BrowserRouter>
