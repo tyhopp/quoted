@@ -1,6 +1,23 @@
-import * as API from '../utils/api.js'
+import axios from 'axios'
 import { uuid } from '../utils/helpers.js'
 
+
+/* AXIOS DEFAULTS
+**************************************************************/
+
+const API = "http://localhost:3001"
+
+let token = localStorage.token
+if (!token) {
+	token = localStorage.token = Math.random().toString(36).substr(-8)
+}
+
+const headers = {
+	'Accept': 'application/json',
+	'Authorization': token
+}
+
+axios.defaults.headers.common['Authorization'] = headers; // from api.js
 
 
 /* RECEIVE ALL POSTS
@@ -27,13 +44,9 @@ function receivePosts (posts) {
 export function fetchPosts (posts) {
 	return function (dispatch) {
 		dispatch(requestPosts(posts))
-		return API.getAllPosts()
-			   .then(
-			   		res => res.json(),
-			   		error => console.log('An error occured.', error)
-			   	)
+			axios.get(`${API}/posts`)
 			   .then(posts => {
-			   		dispatch(receivePosts(posts))
+			   		dispatch(receivePosts(posts.data)) // remember to append .data when using axios
 			   	})
 	}
 }
@@ -60,19 +73,12 @@ export function createPost(values) { // values from redux-form
         body,
         author,
      // category
-    }
-    console.log('New Post: ', post) // returns expected
-        
+    } 
+
     return dispatch => {
-    	console.log('Is post here?', post) // yes, returns expected
-		return API.createAPost(post)
-				.then(
-			   		res => res.json(),
-			   		error => console.log('An error occured.', error)
-			   	)
-			   	.then(res => console.log('YAYA', res))
-				.then(post => {
-					dispatch(createPostSuccess(post))
+		axios.post(`${API}/posts`, post)
+				.then(res => {
+					dispatch(createPostSuccess(res.data))
 				})
     }
 }
