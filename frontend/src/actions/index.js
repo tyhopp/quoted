@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { uuid } from '../utils/helpers.js'
-
+ 
 
 /* AXIOS DEFAULTS
 **************************************************************/
@@ -32,13 +32,14 @@ function requestPosts (posts) {
 }
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-function receivePosts (posts) {
+function receivePosts (posts) { // receives an array of posts 
 	return {
 		type: RECEIVE_POSTS,
 		posts,
 		receivedAt: Date.now()
 	}
 }
+
 
 // thunk middleware action creator, intervenes in the above function
 export function fetchPosts (posts) {

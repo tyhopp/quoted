@@ -5,7 +5,7 @@ import {
 	CREATE_POST
 } from '../actions'
 
-
+ 
 const initialState = {
     posts: []
 }
@@ -13,14 +13,16 @@ const initialState = {
 function posts (state = initialState, action) {
     switch(action.type) {
         case RECEIVE_POSTS :
+            console.log('In request reducer', action.posts)
             return {
                 ...state,
                 posts: action.posts
             }
         case CREATE_POST : 
+            console.log('In create reducer', action.post)
 			return {
 				...state,
-                posts: [action.post]
+                posts: [...state.posts, action.post]
 			}
         default : 
             return state;

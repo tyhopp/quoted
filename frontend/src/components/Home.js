@@ -37,7 +37,7 @@ class Home extends Component {
 		displayedPost: undefined
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.props.dispatch(fetchPosts()) // fetch posts on first app load
 	}
 
@@ -145,6 +145,7 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
+	console.log('State being mapped: ', Object.values(state.posts))
 	return {
 		posts: state.posts
 	}
