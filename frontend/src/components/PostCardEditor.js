@@ -52,7 +52,7 @@ class PostCardEditor extends Component {
 									Write a post
 								</div>
 							</div>
-							<button className="postEditorHeaderItem gold">
+							<button onClick={this._handleCreateModal} className="postEditorHeaderItem gold">
 								<FaClose />
 							</button>
 						</div>
@@ -119,10 +119,5 @@ PostCardEditor = reduxForm({
 	form: 'post'
 })(PostCardEditor)
 
-function mapStateToProps(state) {
-	return {
-		posts: state.posts
-	}
-}
 
 export default connect()(PostCardEditor)

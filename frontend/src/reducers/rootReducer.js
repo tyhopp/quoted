@@ -22,7 +22,7 @@ function posts (state = initialState, action) {
             console.log('In create reducer', action.post)
 			return {
 				...state,
-                posts: [...state.posts, action.post]
+                posts: [...state.posts, action.post] // spread posts to persist original posts array
 			}
         default : 
             return state;

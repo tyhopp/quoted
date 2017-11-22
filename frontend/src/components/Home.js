@@ -64,8 +64,6 @@ class Home extends Component {
 	render() {
 		const { loadingDetailsPost, loadingCreatePost, detailsModalOpen, createModalOpen } = this.state
 		const { posts } = this.props.posts
-		console.log('Home props: ', this.props)
-		console.log('Home props in posts: ', posts)
 
 		return (
 			<div className="entirePostList">
@@ -73,9 +71,13 @@ class Home extends Component {
 				<div className="postListContainer">
 					<div className="postListRow">
 						{posts.map((post) => (
-							<div key={post.id} onClick={() => this.openDetailsModal(post)}>
+							<div key={post.id} className="postContainer">
 								{/* map id: {post.id} */}
 								<PostCard post={post} />
+								<button className="openPostButton" 
+										onClick={() => this.openDetailsModal(post)}>
+									See more
+								</button>
 							</div>
 						))}
 					</div>

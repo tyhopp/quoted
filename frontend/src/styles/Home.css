@@ -13,7 +13,32 @@
 .postListRow {
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
 	margin: 30px 0;
+}
+.postContainer { 
+	width: 300px;
+	height: 100%;
+	background-color: #122C46;
+	border-radius: 10px;
+	padding: 20px;
+	margin: 20px 20px 0 20px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.postContainer:hover {
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.openPostButton {
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #142438;
+	background-color: #04d794;
+	padding: 4px 10px;
+	margin: 0px;
+	border-radius: 8px;
 }
 .newPostButton {
 	position: fixed;
@@ -27,13 +52,13 @@
 	color: #fed80a;
 }
 button, input[type="submit"], input[type="reset"] { /* remove default button styles */
-    background: none !important;
+    background: none;
     color: inherit;
     border: none;
-    padding: 0! important;
+    padding: 0;
     font: inherit;
     cursor: pointer;
-    outline: inherit !important;
+    outline: inherit;
 }
 
 /* MISC */

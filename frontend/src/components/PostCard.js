@@ -21,8 +21,8 @@ class PostCard extends Component {
 
     return (
         <div key={post.id}>
-            <div className="postContainer">
-                <div className="postAlign">
+            <div>
+                <div>
                 	<div className="postRow">
                 		<div key={post.title} className="postTitle">
                 			{capitalize(post.title)}

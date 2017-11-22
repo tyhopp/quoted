@@ -5,9 +5,6 @@ import './index.css';
 import Quoted from './components/Quoted';
 import registerServiceWorker from './registerServiceWorker';
 
-// actions
-import { fetchPosts } from './actions'
-
 // reducer
 import rootReducer from './reducers/rootReducer.js'
 
