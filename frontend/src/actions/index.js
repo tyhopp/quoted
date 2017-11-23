@@ -106,10 +106,10 @@ function receiveComments (comments) { // receives an array of comments
 
 
 // thunk middleware action creator, intervenes in the above function
-export function fetchComments (comments) {
+export function fetchComments (postId, comments) {
 	return function (dispatch) {
 		dispatch(requestComments(comments))
-			axios.get(`${API}/posts/:id/comments`)
+			axios.get(`${API}/posts/${postId}/comments`) // postId passed in from PostCardDetails
 			   .then(comments => {
 			   		dispatch(receiveComments(comments.data)) // remember to append .data when using axios
 			   	})
