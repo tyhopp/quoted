@@ -38,7 +38,7 @@ class Home extends Component {
 	}
 
 	componentDidMount() {
-		this.props.dispatch(fetchPosts()) // fetch posts on first app load
+		this.props.dispatch(fetchPosts()) // fetch posts 
 	}
 
 	openDetailsModal = (post) => {
@@ -147,9 +147,8 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-	console.log('State being mapped: ', Object.values(state.posts))
 	return {
-		posts: state.posts
+		posts: state.posts,
 	}
 }
 

@@ -84,6 +84,35 @@ export function createPost(values) { // values from redux-form
     }
 }
 
+/* RECEIVE ALL COMMENTS
+**************************************************************/
+
+export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
+function requestComments (comments) {
+	return {
+		type: REQUEST_COMMENTS,
+		comments
+	}
+}
+
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
+function receiveComments (comments) { // receives an array of comments
+	return {
+		type: RECEIVE_COMMENTS,
+		comments,
+		receivedAt: Date.now()
+	}
+}
 
 
+// thunk middleware action creator, intervenes in the above function
+export function fetchComments (comments) {
+	return function (dispatch) {
+		dispatch(requestComments(comments))
+			axios.get(`${API}/posts/:id/comments`)
+			   .then(comments => {
+			   		dispatch(receiveComments(comments.data)) // remember to append .data when using axios
+			   	})
+	}
+}
 

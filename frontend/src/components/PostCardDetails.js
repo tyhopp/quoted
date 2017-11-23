@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
+// actions
+import { fetchComments } from '../actions'
 
 // utils
 import { capitalize, convertTimeStamp } from '../utils/helpers'
@@ -23,6 +27,10 @@ class PostCardDetails extends Component {
 
 	state = {
 		detailsModalOpen: this.props.detailsModalOpen,
+	}
+
+	componentDidMount() {
+		this.props.dispatch(fetchComments()) // fetch comments
 	}
 
 	_handleDetailsModal() {
@@ -221,4 +229,10 @@ class PostCardDetails extends Component {
 	}
 } 
 
-export default PostCardDetails
+function mapStateToProps(state) {
+	return {
+		comments: state.comments,
+	}
+}
+
+export default connect(mapStateToProps)(PostCardDetails)
