@@ -31,6 +31,7 @@ class PostCardDetails extends Component {
 
 	componentDidMount() {
 		const postId = this.props.post.id
+		console.log('Post ID: ', postId);
 		this.props.dispatch(fetchComments(postId)) // fetch comments, pass post id
 		console.log('Comments: ', this.props.comments)
 	}
@@ -169,7 +170,7 @@ class PostCardDetails extends Component {
 						</div>
 						<div className="postEditorCommentBlock">
 							<div className="postEditorCommentBlockAlign">
-								{comments.map((comment) => (
+								{comments && comments.map((comment) => (
 									<div className="postEditorRow">
 										<div className="postEditorCommentMain">
 											<div className="postEditorCommentText">
