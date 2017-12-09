@@ -116,3 +116,34 @@ export function fetchComments (postId, comments) {
 	}
 }
 
+/* CREATE COMMENT
+**************************************************************/
+
+export const CREATE_COMMENT = 'CREATE_COMMENT';
+function createCommentSuccess(comment) {
+    return {
+        type: CREATE_COMMENT,
+        comment
+    }
+}
+
+export function createComment(values, parentId) { // values from redux-form
+    
+    const { body, author } = values
+    console.log('Values: ', body, author)
+    const post = {
+        id: uuid(),
+        timestamp: Date.now(),
+        body,
+        author,
+        parentId
+    } 
+
+    return dispatch => {
+		axios.post(`${API}/comments`, post)
+				.then(res => {
+					dispatch(createCommentSuccess(res.data))
+				})
+    }
+}
+

@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Field, reset, reduxForm } from 'redux-form'
 
 // actions
-import { fetchComments } from '../actions'
+import { fetchComments, createComment } from '../actions'
 
 // utils
 import { capitalize, convertTimeStamp } from '../utils/helpers'
@@ -23,10 +24,12 @@ class PostCardDetails extends Component {
 		super(props);
 		// binds 'this' to this PostCardDetails component
 		this._handleDetailsModal = this._handleDetailsModal.bind(this);
+		this._onSubmit = this._onSubmit.bind(this);
 	}
 
 	state = {
 		detailsModalOpen: this.props.detailsModalOpen,
+		parentId: ''
 	}
 
 	componentDidMount() {
@@ -40,9 +43,18 @@ class PostCardDetails extends Component {
 		this.props.closeDetailsModal()
 	}
 
+	_onSubmit(values) {
+		this.setState({ parentId: this.props.post.id}) // assign post id 
+		console.log('Parent Id: ', this.state.parentId)
+		console.log('Comment values: ', values) // form values, returns expected
+		this.props.dispatch(createComment(values, this.state.parentId)) // push form values to store
+		this.props.dispatch(reset('comment')); // from reduxForm, resets values
+	}
+
     render() {
     const { post } = this.props
     const { comments } = this.props.comments
+    const { handleSubmit } = this.props // provided from reduxForm
 
 	    return (
 	    	<div>
@@ -117,47 +129,50 @@ class PostCardDetails extends Component {
 						<div className="postEditorRow">
 							<div className="postEditorLineBreak" />
 						</div>
-						<div className="postEditorRow">
-							<div className="postEditorCommentTitleAlign">
-								<div className="gold">
-									<FaQuoteLeft />
-								</div>
-								<div className="postEditorCommentTitle">
-									Leave a reply
-								</div>
-							</div>
-						</div>
-						<div className="postEditorReplyBlock">
-							<div className="postEditorReplyBlockAlign">
-								<div className="postEditorRow">
-									<div className="postEditorReplyMain">
-										<div className="postEditorReplyRow">
-											<div className="postEditorReplyName">
-												<div className="postEditorReplyNamePrompt">
-													Name 
-												</div>
-												<input type="text" />
-											</div>
-										</div>
-										<div className="postEditorReplyRow">
-											<div className="postEditorReplyContent">
-												<div className="postEditorReplyContentPrompt">
-													Reply
-												</div>
-												<textarea className="postEditorReplyInput" type="text" />
-											</div>
-										</div>
-										<div className="postEditorRow">
-											<button className="postEditorReplyToCommentAlign">
-												<div className="postEditorReplyToCommentText gold">
-													Submit
-												</div>
-											</button>
-										</div>
+						{/* REDUX FORM */}
+						<form onSubmit={handleSubmit(this._onSubmit())}>
+							<div className="postEditorRow">
+								<div className="postEditorCommentTitleAlign">
+									<div className="gold">
+										<FaQuoteLeft />
+									</div>
+									<div className="postEditorCommentTitle">
+										Leave a reply
 									</div>
 								</div>
 							</div>
-						</div>{/* REPLY BLOCK END */}
+							<div className="postEditorReplyBlock">
+								<div className="postEditorReplyBlockAlign">
+									<div className="postEditorRow">
+										<div className="postEditorReplyMain">
+											<div className="postEditorReplyRow">
+												<div className="postEditorReplyName">
+													<label className="postEditorReplyNamePrompt">
+														Name 
+													</label>
+													<Field name="author" component="input" type="text"/>
+												</div>
+											</div>
+											<div className="postEditorReplyRow">
+												<div className="postEditorReplyContent">
+													<label className="postEditorReplyContentPrompt">
+														Reply
+													</label>
+													<Field name="body" component="input" type="text"/>
+												</div>
+											</div>
+											<div className="postEditorRow">
+												<button className="postEditorReplyToCommentAlign">
+													<div className="postEditorReplyToCommentText gold">
+														Submit
+													</div>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>{/* REPLY BLOCK END */}
+						</form>
 						<div className="postEditorRow">
 							<div className="postEditorCommentTitleAlign">
 								<div className="gold">
@@ -240,5 +255,9 @@ function mapStateToProps(state) {
 		comments: state.comments,
 	}
 }
+
+PostCardDetails = reduxForm({
+	form: 'comment',
+})(PostCardDetails)
 
 export default connect(mapStateToProps)(PostCardDetails)

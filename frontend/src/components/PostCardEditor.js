@@ -37,7 +37,7 @@ class PostCardEditor extends Component {
 
 
     render() {
-    	const { handleSubmit } = this.props
+    	const { handleSubmit } = this.props // provided from reduxForm
 
 	    return (
 	    	<div>

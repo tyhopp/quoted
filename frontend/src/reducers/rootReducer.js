@@ -3,7 +3,8 @@ import { reducer as formReducer } from 'redux-form'
 import { 
 	RECEIVE_POSTS,
 	CREATE_POST,
-    RECEIVE_COMMENTS
+    RECEIVE_COMMENTS,
+    CREATE_COMMENT
 } from '../actions'
 
  
@@ -31,10 +32,15 @@ function posts (state = initialState, action) {
 function comments (state = [], action) {
     switch(action.type) {
         case RECEIVE_COMMENTS :
-            console.log('In comment request reducer', action.comments)
             return {
                 ...state,
                 comments: action.comments
+            }
+        case CREATE_COMMENT :
+            console.log('In comment create reducer', action.comment)
+            return {
+                ...state,
+                comments: [...state.comments, action.comment] // spread posts to persist original comments array
             }
         default : 
             return state;
