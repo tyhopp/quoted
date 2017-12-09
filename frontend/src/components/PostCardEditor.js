@@ -30,7 +30,6 @@ class PostCardEditor extends Component {
 	}
 
 	_onSubmit(values) {
-		console.log(values) // form values, returns expected
 		this.props.dispatch(createPost(values)) // push form values to store
 		this.props.closeCreateModal() // destroys form
 	}

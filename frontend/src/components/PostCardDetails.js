@@ -29,14 +29,11 @@ class PostCardDetails extends Component {
 
 	state = {
 		detailsModalOpen: this.props.detailsModalOpen,
-		parentId: ''
 	}
 
 	componentDidMount() {
 		const postId = this.props.post.id
-		console.log('Post ID: ', postId);
 		this.props.dispatch(fetchComments(postId)) // fetch comments, pass post id
-		console.log('Comments: ', this.props.comments)
 	}
 
 	_handleDetailsModal() {
@@ -44,10 +41,8 @@ class PostCardDetails extends Component {
 	}
 
 	_onSubmit(values) {
-		this.setState({ parentId: this.props.post.id}) // assign post id 
-		console.log('Parent Id: ', this.state.parentId)
-		console.log('Comment values: ', values) // form values, returns expected
-		this.props.dispatch(createComment(values, this.state.parentId)) // push form values to store
+		const postId = this.props.post.id
+		this.props.dispatch(createComment(values, postId)) // push form values to store
 		this.props.dispatch(reset('comment')); // from reduxForm, resets values
 	}
 
@@ -130,7 +125,7 @@ class PostCardDetails extends Component {
 							<div className="postEditorLineBreak" />
 						</div>
 						{/* REDUX FORM */}
-						<form onSubmit={handleSubmit(this._onSubmit())}>
+						<form onSubmit={handleSubmit(this._onSubmit)}>
 							<div className="postEditorRow">
 								<div className="postEditorCommentTitleAlign">
 									<div className="gold">

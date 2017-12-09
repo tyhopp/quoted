@@ -66,7 +66,7 @@ function createPostSuccess(post) {
 export function createPost(values) { // values from redux-form
     
     const { title, body, author, category } = values
-    console.log('Values: ', title, body, author)
+
     const post = {
         id: uuid(),
         timestamp: Date.now(),
@@ -127,16 +127,17 @@ function createCommentSuccess(comment) {
     }
 }
 
-export function createComment(values, parentId) { // values from redux-form
+export function createComment(values, postId) { // values from redux-form
     
     const { body, author } = values
     console.log('Values: ', body, author)
+    
     const post = {
         id: uuid(),
         timestamp: Date.now(),
         body,
         author,
-        parentId
+        parentId: postId
     } 
 
     return dispatch => {
