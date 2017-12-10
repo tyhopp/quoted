@@ -41,6 +41,12 @@ class Home extends Component {
 		this.props.dispatch(fetchPosts()) // fetch posts 
 	}
 
+	componentWillReceiveProps(nextProps){
+		if (this.props.posts.posts !== nextProps.posts.posts) {
+			this.props.dispatch(fetchPosts()) // re-fetch posts 
+		}
+	}
+
 	openDetailsModal = (post) => {
 		this.setState({
 			...this.state,

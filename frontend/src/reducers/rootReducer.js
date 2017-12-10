@@ -28,7 +28,6 @@ function posts (state = initialState, action) {
         case VOTE_ON_POST : 
             return {
                 ...state,
-                posts: [...state.posts, action.post]
             }
         default : 
             return state;

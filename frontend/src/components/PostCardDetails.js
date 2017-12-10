@@ -181,7 +181,7 @@ class PostCardDetails extends Component {
 						<div className="postEditorCommentBlock">
 							<div className="postEditorCommentBlockAlign">
 								{comments && comments.map((comment) => (
-									<div className="postEditorRow">
+									<div key={comment.id} className="postEditorRow">
 										<div className="postEditorCommentMain">
 											<div key={comment.body} className="postEditorCommentText">
 												{comment.body}

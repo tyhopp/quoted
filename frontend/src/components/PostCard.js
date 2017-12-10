@@ -23,6 +23,12 @@ class PostCard extends Component {
         const postId = this.props.post.id
         const vote = 'upVote'
         this.props.dispatch(voteOnPost(postId, vote))
+
+    }
+    _handleDownVote(post) {
+        const postId = this.props.post.id
+        const vote = 'downVote'
+        this.props.dispatch(voteOnPost(postId, vote))
     }
 
     render() {
@@ -66,7 +72,9 @@ class PostCard extends Component {
                     			</button>
                     		</div>
                     		<div className="actionItem">
-                    			<button className="actionThumbsDown">
+                    			<button className="actionThumbsDown"
+                                        onClick={() => this._handleDownVote(post)}
+                                >
                     				<FaThumbsDown />
                     			</button>
                     		</div>
