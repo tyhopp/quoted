@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
+// actions
+import { voteOnPost } from '../actions'
+
 // utils
 import { capitalize, convertTimeStamp } from '../utils/helpers'
 
@@ -15,6 +18,12 @@ import '../styles/All.css'
 import '../styles/PostCard.css';
 
 class PostCard extends Component {
+
+    _handleUpVote(post) {
+        const postId = this.props.post.id
+        const vote = 'upVote'
+        this.props.dispatch(voteOnPost(postId, vote))
+    }
 
     render() {
     const { post } = this.props
@@ -50,7 +59,9 @@ class PostCard extends Component {
                     			</div>
                     		</div>
                     		<div className="actionItem">
-                    			<button className="actionThumbsUp">
+                    			<button className="actionThumbsUp"
+                                        onClick={() => this._handleUpVote(post)}
+                                >
                     				<FaThumbsUp />
                     			</button>
                     		</div>

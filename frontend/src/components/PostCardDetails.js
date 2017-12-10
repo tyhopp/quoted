@@ -183,7 +183,7 @@ class PostCardDetails extends Component {
 								{comments && comments.map((comment) => (
 									<div className="postEditorRow">
 										<div className="postEditorCommentMain">
-											<div className="postEditorCommentText">
+											<div key={comment.body} className="postEditorCommentText">
 												{comment.body}
 											<button className="postEditorCommentClose">
 												<FaClose />

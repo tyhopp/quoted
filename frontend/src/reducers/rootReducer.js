@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form'
 import { 
 	RECEIVE_POSTS,
 	CREATE_POST,
+    VOTE_ON_POST,
     RECEIVE_COMMENTS,
     CREATE_COMMENT
 } from '../actions'
@@ -24,6 +25,11 @@ function posts (state = initialState, action) {
 				...state,
                 posts: [...state.posts, action.post] // spread posts to persist original posts array
 			}
+        case VOTE_ON_POST : 
+            return {
+                ...state,
+                posts: [...state.posts, action.post]
+            }
         default : 
             return state;
     }

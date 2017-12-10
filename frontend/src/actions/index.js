@@ -84,6 +84,27 @@ export function createPost(values) { // values from redux-form
     }
 }
 
+/* VOTE ON POST
+**************************************************************/
+
+export const VOTE_ON_POST = 'VOTE_ON_POST';
+function voteOnPostSuccess(post) {
+    return {
+        type: VOTE_ON_POST,
+        post
+    }
+}
+
+export function voteOnPost(postId, vote) {
+
+    return dispatch => {
+		axios.post(`${API}/posts/${postId}`, { option: vote })
+				.then(res => {
+					dispatch(voteOnPostSuccess(res.data))
+				})
+    }
+}
+
 /* RECEIVE ALL COMMENTS
 **************************************************************/
 
@@ -131,7 +152,7 @@ export function createComment(values, postId) { // values from redux-form
     
     const { body, author } = values
     console.log('Values: ', body, author)
-    
+
     const post = {
         id: uuid(),
         timestamp: Date.now(),
