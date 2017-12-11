@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reset, reduxForm } from 'redux-form'
 
 // actions
-import { fetchComments, createComment } from '../actions'
+import { fetchComments, fetchOnePost, createComment, voteOnPost } from '../actions'
 
 // utils
 import { capitalize, convertTimeStamp } from '../utils/helpers'
@@ -35,11 +35,23 @@ class PostCardDetails extends Component {
 		const postId = this.props.post.id
 		this.props.dispatch(fetchComments(postId)) // fetch comments, pass post id
 	}
-
 	_handleDetailsModal() {
 		this.props.closeDetailsModal()
 	}
-
+	componentWillReceiveProps(nextProps){
+		console.log('A ', this.props.post)
+		console.log('B ', nextProps.post)
+	}
+	_handleUpVote(post) {
+		const postId = this.props.post.id
+		const vote = 'upVote'
+		this.props.dispatch(voteOnPost(postId, vote))
+	}
+    _handleDownVote(post) {
+        const postId = this.props.post.id
+        const vote = 'downVote'
+        this.props.dispatch(voteOnPost(postId, vote))
+    }
 	_onSubmit(values) {
 		const postId = this.props.post.id
 		this.props.dispatch(createComment(values, postId)) // push form values to store
@@ -88,12 +100,16 @@ class PostCardDetails extends Component {
 				        			</div>
 				        		</div>
 				        		<div className="postEditorActionItem">
-									<button className="postEditorThumbsUp">
+									<button className="postEditorThumbsUp"
+											onClick={() => this._handleUpVote(post)}
+									>
 										<FaThumbsUp />
 									</button>
 								</div>
 								<div className="postEditorActionItem">
-									<button className="postEditorThumbsDown">
+									<button className="postEditorThumbsDown"
+											onClick={() => this._handleDownVote(post)}
+									>
 										<FaThumbsDown />
 									</button>
 								</div>

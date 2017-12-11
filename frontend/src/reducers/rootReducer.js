@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import { 
 	RECEIVE_POSTS,
+    RECEIVE_A_POST,
 	CREATE_POST,
     VOTE_ON_POST,
     RECEIVE_COMMENTS,
@@ -19,6 +20,11 @@ function posts (state = initialState, action) {
             return {
                 ...state,
                 posts: action.posts
+            }
+        case RECEIVE_A_POST :
+            return {
+                ...state,
+                post: action.post
             }
         case CREATE_POST : 
 			return {

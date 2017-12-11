@@ -52,6 +52,26 @@ export function fetchPosts (posts) {
 	}
 }
 
+/* RECEIVE ONE POST
+**************************************************************/
+
+export const RECEIVE_A_POST = 'RECEIVE_A_POST';
+function receiveOnePost(post) {
+    return {
+        type: RECEIVE_A_POST,
+        post
+    }
+}
+export function fetchOnePost(postId) {
+
+    return dispatch => {
+		axios.get(`${API}/posts/${postId}`)
+				.then(res => {
+					dispatch(receiveOnePost(res.data))
+				})
+    }
+}
+
 /* CREATE POST
 **************************************************************/
 
