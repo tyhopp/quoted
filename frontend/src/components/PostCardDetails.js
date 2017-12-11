@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reset, reduxForm } from 'redux-form'
 
 // actions
-import { fetchComments, fetchOnePost, createComment, voteOnPost } from '../actions'
+import { fetchComments, fetchOnePost, createComment, voteOnPost, editPost } from '../actions'
 
 // utils
 import { capitalize, convertTimeStamp } from '../utils/helpers'
@@ -48,6 +48,9 @@ class PostCardDetails extends Component {
         const postId = this.props.postId
         const vote = 'downVote'
         this.props.dispatch(voteOnPost(postId, vote))
+    }
+    _handleEditPost() {
+    	// return component to edit content
     }
 	_onSubmit(values) {
 		const postId = this.props.postId
@@ -132,7 +135,9 @@ class PostCardDetails extends Component {
 							</div>
 						</div>
 						<div className="postEditorRow">
-							<button className="gold">
+							<button className="gold"
+									onClick={() => this._handleEditPost()}
+							>
 								Edit
 							</button>
 						</div>

@@ -5,6 +5,7 @@ import {
     RECEIVE_A_POST,
 	CREATE_POST,
     VOTE_ON_POST,
+    EDIT_POST,
     RECEIVE_COMMENTS,
     CREATE_COMMENT
 } from '../actions'
@@ -22,6 +23,11 @@ function post (state = [], action) {
                 post: [action.post]
             }
         case VOTE_ON_POST : 
+            return {
+                ...state,
+                post: [action.post]
+            }
+        case EDIT_POST :
             return {
                 ...state,
                 post: [action.post]

@@ -124,6 +124,35 @@ export function voteOnPost(postId, vote) {
     }
 }
 
+/* EDIT A POST
+**************************************************************/
+
+export const EDIT_POST = 'EDIT_POST';
+function editPostSuccess(post) {
+    return {
+        type: EDIT_POST,
+        post
+    }
+}
+
+export function editPost(postId, values) {
+
+	const { title, body } = values
+    console.log('Values: ', title, body)
+
+    const post = {
+    	title,
+    	body
+    } 
+
+    return dispatch => {
+		axios.put(`${API}/posts/${postId}`, post)
+				.then(res => {
+					dispatch(editPostSuccess(res.data))
+				})
+    }
+}
+
 /* RECEIVE ALL COMMENTS
 **************************************************************/
 
