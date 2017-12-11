@@ -49,7 +49,7 @@ class Home extends Component {
 		this.setState({
 			...this.state,
 			detailsModalOpen: true,
-			displayedPost: post
+			displayedPostId: post.id
 		})
 	}
 	closeDetailsModal() {
@@ -110,7 +110,7 @@ class Home extends Component {
 								</div>
 							:   <div>
 							    	<div className="postEditorBg" />
-									<PostCardDetails post={this.state.displayedPost}
+									<PostCardDetails postId={this.state.displayedPostId}
 													 closeDetailsModal={this.closeDetailsModal}
 													 detailsModalOpen={this.state.detailsModalOpen}
 									/>

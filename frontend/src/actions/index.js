@@ -63,7 +63,6 @@ function receiveOnePost(post) {
     }
 }
 export function fetchOnePost(postId) {
-
     return dispatch => {
 		axios.get(`${API}/posts/${postId}`)
 				.then(res => {

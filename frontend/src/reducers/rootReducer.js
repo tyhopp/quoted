@@ -14,17 +14,29 @@ const initialState = {
     posts: []
 }
 
+function post (state = [], action) {
+    switch(action.type) {
+        case RECEIVE_A_POST :
+            return {
+                ...state,
+                post: [action.post]
+            }
+        case VOTE_ON_POST : 
+            return {
+                ...state,
+                post: [action.post]
+            }
+        default : 
+            return state;
+    }
+}
+
 function posts (state = initialState, action) {
     switch(action.type) {
         case RECEIVE_POSTS :
             return {
                 ...state,
                 posts: action.posts
-            }
-        case RECEIVE_A_POST :
-            return {
-                ...state,
-                post: action.post
             }
         case CREATE_POST : 
 			return {
@@ -60,6 +72,7 @@ function comments (state = [], action) {
 
 
 const rootReducer = combineReducers({  // short hand property names
+  post,
   posts,
   comments,
   form: formReducer

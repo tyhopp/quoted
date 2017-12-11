@@ -32,39 +32,38 @@ class PostCardDetails extends Component {
 	}
 
 	componentDidMount() {
-		const postId = this.props.post.id
+		const postId = this.props.postId // from Home component
+		this.props.dispatch(fetchOnePost(postId)) // fetch post details
 		this.props.dispatch(fetchComments(postId)) // fetch comments, pass post id
 	}
 	_handleDetailsModal() {
 		this.props.closeDetailsModal()
 	}
-	componentWillReceiveProps(nextProps){
-		console.log('A ', this.props.post)
-		console.log('B ', nextProps.post)
-	}
-	_handleUpVote(post) {
-		const postId = this.props.post.id
+	_handleUpVote() {
+		const postId = this.props.postId
 		const vote = 'upVote'
 		this.props.dispatch(voteOnPost(postId, vote))
 	}
-    _handleDownVote(post) {
-        const postId = this.props.post.id
+    _handleDownVote() {
+        const postId = this.props.postId
         const vote = 'downVote'
         this.props.dispatch(voteOnPost(postId, vote))
     }
 	_onSubmit(values) {
-		const postId = this.props.post.id
+		const postId = this.props.postId
 		this.props.dispatch(createComment(values, postId)) // push form values to store
 		this.props.dispatch(reset('comment')); // from reduxForm, resets values
 	}
 
     render() {
-    const { post } = this.props
+    const { post } = this.props.post
     const { comments } = this.props.comments
     const { handleSubmit } = this.props // provided from reduxForm
 
 	    return (
+
 	    	<div>
+	    		{post && post.map((post) => (
 				<div key={post.id} className="postEditorContainer">
 					<div className="postEditorHeader">
 						<div className="white">
@@ -101,14 +100,14 @@ class PostCardDetails extends Component {
 				        		</div>
 				        		<div className="postEditorActionItem">
 									<button className="postEditorThumbsUp"
-											onClick={() => this._handleUpVote(post)}
+											onClick={() => this._handleUpVote()}
 									>
 										<FaThumbsUp />
 									</button>
 								</div>
 								<div className="postEditorActionItem">
 									<button className="postEditorThumbsDown"
-											onClick={() => this._handleDownVote(post)}
+											onClick={() => this._handleDownVote()}
 									>
 										<FaThumbsDown />
 									</button>
@@ -256,6 +255,7 @@ class PostCardDetails extends Component {
 						</div>{/* COMMENT BLOCK END */}
 					</div>
 				</div>
+				))}
 			</div>
 		)
 	}
@@ -264,6 +264,7 @@ class PostCardDetails extends Component {
 function mapStateToProps(state) {
 	return {
 		comments: state.comments,
+		post: state.post
 	}
 }
 
