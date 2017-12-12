@@ -13,7 +13,7 @@ import FaClose from 'react-icons/lib/fa/close'
 import '../styles/All.css'
 import '../styles/PostCardCreator.css';
 
-class PostCardEditor extends Component {
+class PostCardCreator extends Component {
 	constructor(props) {
 		super(props);
 		// binds 'this' to this PostCardDetails component
@@ -114,9 +114,9 @@ class PostCardEditor extends Component {
 	}
 }
 
-PostCardEditor = reduxForm({
+PostCardCreator = reduxForm({
 	form: 'post'
-})(PostCardEditor)
+})(PostCardCreator)
 
 
-export default connect()(PostCardEditor)
+export default connect()(PostCardCreator)

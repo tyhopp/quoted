@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 // project components
 import Category from '../components/Category'
+import PostCardEditor from './PostCardEditor'
 
 // project styles
 import '../styles/All.css'
@@ -16,9 +17,9 @@ class NavBar extends Component {
         	<div className="navAlign">
 		    	{/* map over category later */}
 		    	<Link to="/">
-			    	<div className="navLogo">
+			    	<button className="navLogo">
 			    		Quoted
-			    	</div>
+			    	</button>
 		    	</Link>
 		    	<div className="navCategories">
 		        	<Category />

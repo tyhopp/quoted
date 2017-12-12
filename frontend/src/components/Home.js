@@ -13,7 +13,7 @@ import MdAddCircle from 'react-icons/lib/md/add-circle'
 import NavBar from './NavBar'
 import PostCard from './PostCard'
 import PostCardDetails from './PostCardDetails'
-import PostCardEditor from './PostCardEditor'
+import PostCardCreator from './PostCardCreator'
 
 // project styles
 import '../styles/Home.css'
@@ -88,7 +88,7 @@ class Home extends Component {
 				</div>
 				<button className="newPostButton"
 						onClick={this.openCreateModal}>
-					<MdAddCircle />
+					<MdAddCircle className="newPostButtonImg"/>
 				</button>
 				
 				<Modal // VIEW POST DETAILS MODAL
@@ -138,7 +138,7 @@ class Home extends Component {
 								</div>
 							:   <div>
 							    	<div className="postEditorBg" /> 
-									<PostCardEditor closeCreateModal={this.closeCreateModal}
+									<PostCardCreator closeCreateModal={this.closeCreateModal}
 													createModalOpen={this.state.createModalOpen}
 									/>
 								</div>

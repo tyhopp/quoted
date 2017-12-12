@@ -15,6 +15,9 @@ import MdAccountCircle from 'react-icons/lib/md/account-circle'
 import FaThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
 
+// project components
+import PostCardEditor from './PostCardEditor'
+
 // project styles
 import '../styles/All.css'
 import '../styles/PostCardDetails.css';
@@ -50,7 +53,9 @@ class PostCardDetails extends Component {
         this.props.dispatch(voteOnPost(postId, vote))
     }
     _handleEditPost() {
-    	// return component to edit content
+    	return (
+    		<PostCardEditor />
+    	)
     }
 	_onSubmit(values) {
 		const postId = this.props.postId

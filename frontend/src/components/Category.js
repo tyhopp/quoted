@@ -9,15 +9,21 @@ class Category extends Component {
     return (
       <div>
         <ul className="categoryList">
-        	<li className="categoryItem red">
-        		People
-        	</li>
-          <li className="categoryItem green">
-            Places
-          </li>
-          <li className="categoryItem purple">
-            Things
-          </li>
+          <button>
+          	<li className="categoryItem red">
+          		People
+          	</li>
+          </button>
+          <button>
+            <li className="categoryItem green">
+              Places
+            </li>
+          </button>
+          <button>
+            <li className="categoryItem purple">
+              Things
+            </li>
+          </button>
         </ul>
       </div>
     );

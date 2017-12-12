@@ -1,7 +1,7 @@
 /* MAIN MODALS */
 .postEditorBg {
 	position: fixed;
-	z-index: 3;
+	z-index: 5;
 	top: 0px;
 	left: 0px;
 	right: 0px;
@@ -11,7 +11,7 @@
 }
 .postEditorContainer {
 	position: fixed;
-	z-index: 4;
+	z-index: 6;
 	width: 700px;
 	height: 400px;
 	overflow: hidden;
@@ -24,7 +24,7 @@
 }
 .postEditorContainerTwo {
 	position: fixed;
-	z-index: 4;
+	z-index: 6;
 	width: 700px;
 	height: 300px;
 	overflow: hidden;
