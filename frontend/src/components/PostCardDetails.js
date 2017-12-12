@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reset, reduxForm } from 'redux-form'
+import Modal from 'react-modal'
+import Loading from 'react-loading'
 
 // actions
 import { fetchComments, fetchOnePost, createComment, voteOnPost, editPost } from '../actions'
@@ -32,6 +34,8 @@ class PostCardDetails extends Component {
 
 	state = {
 		detailsModalOpen: this.props.detailsModalOpen,
+		loadingEditModal: false,
+		editModalOpen: false,
 	}
 
 	componentDidMount() {
@@ -52,16 +56,12 @@ class PostCardDetails extends Component {
         const vote = 'downVote'
         this.props.dispatch(voteOnPost(postId, vote))
     }
-    _handleEditPost() {
-    	return (
-    		<PostCardEditor />
-    	)
-    }
 	_onSubmit(values) {
 		const postId = this.props.postId
 		this.props.dispatch(createComment(values, postId)) // push form values to store
 		this.props.dispatch(reset('comment')); // from reduxForm, resets values
 	}
+	openEditModal = () => this.setState(() => ({ editModalOpen: true }))
 
     render() {
     const { post } = this.props.post
@@ -141,7 +141,7 @@ class PostCardDetails extends Component {
 						</div>
 						<div className="postEditorRow">
 							<button className="gold"
-									onClick={() => this._handleEditPost()}
+									onClick={() => this.openEditModal()}
 							>
 								Edit
 							</button>
@@ -266,6 +266,32 @@ class PostCardDetails extends Component {
 					</div>
 				</div>
 				))}
+
+				<Modal // EDIT POST MODAL
+		          className='modal'
+		          overlayClassName='createOverlay'
+		          isOpen={this.state.editModalOpen}
+		          onRequestClose={this.closeEditModal}
+		          contentLabel='Modal'
+		        >
+					<div>
+						{this.state.loadingEditPost === true
+							?   <div>
+									<div className="postEditorBg" />
+									<Loading type='bubbles' 
+											 delay={200} 
+											 color='#fed80a' 
+											 className="loading"
+											 width={120} />
+								</div>
+							:   <div>
+							    	<div className="postEditorBg" /> 
+									<PostCardEditor />
+								</div>
+						}
+					</div>
+		        </Modal>
+
 			</div>
 		)
 	}

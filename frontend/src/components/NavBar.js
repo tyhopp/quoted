@@ -10,6 +10,13 @@ import '../styles/All.css'
 import '../styles/NavBar.css';
 
 class NavBar extends Component {
+
+	openIt() {
+		return (
+			<PostCardEditor />
+		)
+	}
+
   render() {
     return (
       <div>
@@ -17,7 +24,7 @@ class NavBar extends Component {
         	<div className="navAlign">
 		    	{/* map over category later */}
 		    	<Link to="/">
-			    	<button className="navLogo">
+			    	<button className="navLogo" onClick={() => this.openIt()}>
 			    		Quoted
 			    	</button>
 		    	</Link>

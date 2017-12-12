@@ -11,7 +11,7 @@ import FaClose from 'react-icons/lib/fa/close'
 
 // project styles
 import '../styles/All.css'
-import '../styles/PostCardCreator.css';
+import '../styles/PostCardEditor.css';
 
 class PostCardEditor extends Component {
 	constructor(props) {
