@@ -16,22 +16,17 @@ import '../styles/PostCardEditor.css';
 class PostCardEditor extends Component {
 	constructor(props) {
 		super(props);
-		// binds 'this' to this PostCardDetails component
-		this._handleCreateModal = this._handleCreateModal.bind(this);
+		this._handleEditModal = this._handleEditModal.bind(this);
 		this._onSubmit = this._onSubmit.bind(this);
 	}
 
-	state = {
-		createModalOpen: this.props.createModalOpen,
-	}
-
-	_handleCreateModal() {
-		this.props.closeCreateModal()
+	_handleEditModal() {
+		this.props.closeEditModal()
 	}
 
 	_onSubmit(values) {
 		this.props.dispatch(createPost(values)) // push form values to store
-		this.props.closeCreateModal() // destroys form
+		this.props.closeEditModal() // destroys form
 	}
 
 
@@ -48,10 +43,10 @@ class PostCardEditor extends Component {
 									<FaQuoteLeft />
 								</div>
 								<div className="postEditorCommentTitle">
-									Write a post
+									Edit Post
 								</div>
 							</div>
-							<button onClick={this._handleCreateModal} className="postEditorHeaderItem gold">
+							<button onClick={this._handleEditModal} className="postEditorHeaderItem gold">
 								<FaClose />
 							</button>
 						</div>
@@ -63,14 +58,6 @@ class PostCardEditor extends Component {
 							<div className="postEditorReplyBlockAlign">
 								<div className="postEditorRow">
 									<div className="postEditorReplyMain">
-										<div className="postEditorReplyRow">
-											<div className="postEditorReplyName">
-												<label className="postEditorReplyNamePrompt">
-													Author
-												</label>
-												<Field name="author" component="input" type="text"/>
-											</div>
-										</div>
 										<div className="postEditorReplyRow">
 											<div className="postEditorReplyName">
 												<label className="postEditorReplyNamePrompt">
@@ -86,13 +73,6 @@ class PostCardEditor extends Component {
 												</label>
 												<Field name="body" component="input" type="text"/>
 											</div>
-										</div>
-										<div className="postEditorReplyRow">
-											<Field name="category" component="select">
-												<option value="people">People</option> 
-												<option value="places">Places</option>
-												<option value="things">Things</option>
-											</Field>
 										</div>
 										<div className="postEditorRow">
 											<button type="submit" 

@@ -62,6 +62,7 @@ class PostCardDetails extends Component {
 		this.props.dispatch(reset('comment')); // from reduxForm, resets values
 	}
 	openEditModal = () => this.setState(() => ({ editModalOpen: true }))
+	closeEditModal = () => this.setState(() => ({ editModalOpen: false }))
 
     render() {
     const { post } = this.props.post
@@ -286,7 +287,7 @@ class PostCardDetails extends Component {
 								</div>
 							:   <div>
 							    	<div className="postEditorBg" /> 
-									<PostCardEditor />
+									<PostCardEditor closeEditModal={this.closeEditModal} />
 								</div>
 						}
 					</div>
