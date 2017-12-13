@@ -31,7 +31,7 @@ class PostCardEditor extends Component {
 
 
     render() {
-    	const { handleSubmit } = this.props // provided from reduxForm
+    	const { handleSubmit, post } = this.props // provided from reduxForm
 
 	    return (
 	    	<div>
@@ -55,7 +55,8 @@ class PostCardEditor extends Component {
 						<form className="postEditorReplyBlock"
 							  onSubmit={handleSubmit(this._onSubmit)}
 						>
-							<div className="postEditorReplyBlockAlign">
+							{post && post.map((post) => (
+							<div key={post} className="postEditorReplyBlockAlign">
 								<div className="postEditorRow">
 									<div className="postEditorReplyMain">
 										<div className="postEditorReplyRow">
@@ -71,7 +72,7 @@ class PostCardEditor extends Component {
 												<label className="postEditorReplyContentPrompt">
 													Body
 												</label>
-												<Field name="body" component="input" type="text"/>
+												<textarea name="body" component="input" type="text"/>
 											</div>
 										</div>
 										<div className="postEditorRow">
@@ -86,6 +87,7 @@ class PostCardEditor extends Component {
 									</div>
 								</div>
 							</div>
+							))}
 						</form>{/* REDUX FORM END */}
 					</div>
 				</div>
@@ -95,7 +97,7 @@ class PostCardEditor extends Component {
 }
 
 PostCardEditor = reduxForm({
-	form: 'post'
+	form: 'editPost'
 })(PostCardEditor)
 
 

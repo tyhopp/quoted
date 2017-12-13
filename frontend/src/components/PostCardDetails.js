@@ -179,7 +179,7 @@ class PostCardDetails extends Component {
 													<label className="postEditorReplyContentPrompt">
 														Reply
 													</label>
-													<Field name="body" component="input" type="text"/>
+													<textarea name="body" component="input" type="text"/>
 												</div>
 											</div>
 											<div className="postEditorRow">
@@ -287,7 +287,9 @@ class PostCardDetails extends Component {
 								</div>
 							:   <div>
 							    	<div className="postEditorBg" /> 
-									<PostCardEditor closeEditModal={this.closeEditModal} />
+									<PostCardEditor closeEditModal={this.closeEditModal} 
+													post={post}
+									/>
 								</div>
 						}
 					</div>
