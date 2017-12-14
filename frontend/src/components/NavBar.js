@@ -17,7 +17,7 @@ class NavBar extends Component {
         	<div className="navAlign">
 		    	{/* map over category later */}
 		    	<Link to="/">
-			    	<button className="navLogo" onClick={() => this.openIt()}>
+			    	<button className="navLogo">
 			    		Quoted
 			    	</button>
 		    	</Link>
