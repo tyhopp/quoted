@@ -5,7 +5,7 @@ import Modal from 'react-modal'
 import Loading from 'react-loading'
 
 // actions
-import { fetchComments, fetchOnePost, createComment, voteOnPost, editPost } from '../actions'
+import { fetchComments, fetchOnePost, createComment, voteOnPost } from '../actions'
 
 // utils
 import { capitalize, convertTimeStamp } from '../utils/helpers'
