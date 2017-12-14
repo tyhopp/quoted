@@ -84,7 +84,7 @@ class PostCardCreator extends Component {
 												<label className="postEditorReplyContentPrompt">
 													Body
 												</label>
-												<textarea name="body" component="input" type="text"/>
+												<Field name="body" component="textarea" type="text"/>
 											</div>
 										</div>
 										<div className="postEditorReplyRow">

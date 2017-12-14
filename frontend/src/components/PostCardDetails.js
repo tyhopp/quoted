@@ -179,7 +179,7 @@ class PostCardDetails extends Component {
 													<label className="postEditorReplyContentPrompt">
 														Reply
 													</label>
-													<textarea name="body" component="input" type="text"/>
+													<Field name="body" component="textarea" type="text"/>
 												</div>
 											</div>
 											<div className="postEditorRow">

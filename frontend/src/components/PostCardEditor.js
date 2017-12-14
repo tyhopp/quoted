@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { reduxForm } from 'redux-form'
+import { reduxForm, Field } from 'redux-form'
 
 // actions
-
+import { editPost } from '../actions'
 
 // icons
 import FaQuoteLeft from 'react-icons/lib/fa/quote-left'
@@ -25,11 +25,13 @@ class PostCardEditor extends Component {
 	}
 
 	_onSubmit(values) {
+		const postId = this.props.post[0].id
+		this.props.dispatch(editPost(postId, values)) // edit post
 		this.props.closeEditModal() // destroys form
 	}
 
     render() {
-    	const { handleSubmit, post } = this.props // provided from reduxForm
+    	const { handleSubmit, post } = this.props // handleSubmit provided from reduxForm
 
 	    return (
 	    	<div>
@@ -62,7 +64,7 @@ class PostCardEditor extends Component {
 												<label className="postEditorReplyNamePrompt">
 													Title
 												</label>
-												<input name="title" 
+												<Field name="title" 
 													   component="input" 
 													   type="text" 
 													   defaultValue={post.title}
@@ -74,8 +76,8 @@ class PostCardEditor extends Component {
 												<label className="postEditorReplyContentPrompt">
 													Body
 												</label>
-												<textarea name="body" 
-														  component="input" 
+												<Field name="body" 
+														  component="textarea" 
 														  type="text"
 														  defaultValue={post.body}
 												/>
