@@ -138,7 +138,6 @@ function editPostSuccess(post) {
 export function editPost(postId, values) {
 
 	const { title, body } = values
-    console.log('Values: ', title, body)
 
     const post = {
     	title,
@@ -149,6 +148,25 @@ export function editPost(postId, values) {
 		axios.put(`${API}/posts/${postId}`, post)
 				.then(res => {
 					dispatch(editPostSuccess(res.data))
+				})
+    }
+}
+
+/* DELETE POST
+**************************************************************/
+
+export const DELETE_POST = 'DELETE_POST';
+function deletePostSuccess(post) {
+    return {
+        type: DELETE_POST,
+        post
+    }
+}
+export function deletePost(postId) {
+    return dispatch => {
+		axios.delete(`${API}/posts/${postId}`)
+				.then(res => {
+					dispatch(deletePostSuccess(res.data))
 				})
     }
 }

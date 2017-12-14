@@ -6,6 +6,7 @@ import {
 	CREATE_POST,
     VOTE_ON_POST,
     EDIT_POST,
+    DELETE_POST,
     RECEIVE_COMMENTS,
     CREATE_COMMENT
 } from '../actions'
@@ -31,6 +32,10 @@ function post (state = [], action) {
             return {
                 ...state,
                 post: [action.post]
+            }
+        case DELETE_POST :
+            return {
+                ...state,
             }
         default : 
             return state;

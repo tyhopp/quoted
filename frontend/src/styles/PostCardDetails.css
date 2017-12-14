@@ -136,6 +136,7 @@
 .postEditorCommentMain {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
 }
 .postEditorCommentText {
 	line-height: 22px;
@@ -179,7 +180,7 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-}
+} 
 .postEditorReplyNamePrompt {
 	margin-right: 10px;
 }
@@ -228,7 +229,13 @@ textarea {
 }
 .postEditorReplyToCommentText {
 	font-size: 16px;
-	padding-top: 2px
+	padding-top: 2px;
+}
+.commentEditorRow {
+	padding: 15px 0;
+}
+.commentEditorSubRow {
+	padding: 5px 0;
 }
 
 /* MISC */
@@ -237,7 +244,4 @@ textarea {
 	z-index: 5;
 	top: 45%;
 	left: 45%;
-}
-.marg {
-	margin: 0 8px;
 }

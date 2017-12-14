@@ -5,7 +5,7 @@ import Modal from 'react-modal'
 import Loading from 'react-loading'
 
 // actions
-import { fetchComments, fetchOnePost, createComment, voteOnPost } from '../actions'
+import { fetchComments, fetchOnePost, createComment, voteOnPost, deletePost } from '../actions'
 
 // utils
 import { capitalize, convertTimeStamp } from '../utils/helpers'
@@ -55,6 +55,11 @@ class PostCardDetails extends Component {
         const postId = this.props.postId
         const vote = 'downVote'
         this.props.dispatch(voteOnPost(postId, vote))
+    }
+    _handleDeletePost() {
+    	const postId = this.props.postId
+    	this.props.dispatch(deletePost(postId))
+    	this.props.closeDetailsModal()
     }
 	_onSubmit(values) {
 		const postId = this.props.postId
@@ -141,10 +146,15 @@ class PostCardDetails extends Component {
 							</div>
 						</div>
 						<div className="postEditorRow">
-							<button className="gold"
+							<button className="gold marg"
 									onClick={() => this.openEditModal()}
 							>
 								Edit
+							</button>
+							<button className="gold marg"
+									onClick={() => this._handleDeletePost()}
+							>
+								Delete
 							</button>
 						</div>
 						<div className="postEditorRow">
@@ -207,15 +217,15 @@ class PostCardDetails extends Component {
 						<div className="postEditorCommentBlock">
 							<div className="postEditorCommentBlockAlign">
 								{comments && comments.map((comment) => (
-									<div key={comment.id} className="postEditorRow">
-										<div className="postEditorCommentMain">
-											<div key={comment.body} className="postEditorCommentText">
-												{comment.body}
-											<button className="postEditorCommentClose">
-												<FaClose />
-											</button>
+									<div className="commentEditorRow" key={comment.id}>
+										<div className="commentEditorSubRow">
+											<div className="postEditorCommentMain">
+												<div key={comment.body} className="postEditorCommentText">
+													{comment.body}
+												</div>
+											</div>
 										</div>
-										<div className="postEditorRow">
+										<div className="commentEditorSubRow">
 											<div className="postEditorCommentActionItems">
 												<div className="postEditorAuthorAlign postEditorActionItem">
 													<MdAccountCircle />
@@ -245,7 +255,7 @@ class PostCardDetails extends Component {
 							                    </div>
 											</div>
 										</div>
-										<div className="postEditorRow">
+										<div className="commentEditorSubRow">
 											<div className="postEditorActionOnComment">
 												<button className="postEditorReplyToCommentAlign marg">
 													<div className="postEditorReplyToCommentText gold">
@@ -257,10 +267,14 @@ class PostCardDetails extends Component {
 														Edit
 													</div>
 												</button>
+												<button className="postEditorReplyToCommentAlign marg">
+													<div className="postEditorReplyToCommentText gold">
+														Delete
+													</div>
+												</button>
 											</div>
 										</div>
 									</div>
-								</div>
 								))}
 							</div>
 						</div>{/* COMMENT BLOCK END */}
