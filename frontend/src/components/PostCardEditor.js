@@ -35,6 +35,7 @@ class PostCardEditor extends Component {
 
 	    return (
 	    	<div>
+	    		{console.log('Props: ', this.props)}
 				<div className="postEditorContainerTwo">
 					<div className="postEditorRowAlign">
 						<div className="postEditorRow modalTwoHeaderAlign">
@@ -67,7 +68,6 @@ class PostCardEditor extends Component {
 												<Field name="title" 
 													   component="input" 
 													   type="text" 
-													   defaultValue={post.title}
 												/>
 											</div>
 										</div>
@@ -79,7 +79,6 @@ class PostCardEditor extends Component {
 												<Field name="body" 
 														  component="textarea" 
 														  type="text"
-														  defaultValue={post.body}
 												/>
 											</div>
 										</div>
@@ -104,10 +103,22 @@ class PostCardEditor extends Component {
 	}
 }
 
+function mapStateToProps(state) {
+
+	const post = state.post.post[0]
+
+	return {
+		initialValues: {
+			title: post.title,
+			body: post.body
+		}
+	}
+}
+
 PostCardEditor = reduxForm({
 	form: 'editPost',
 
 })(PostCardEditor)
 
 
-export default connect()(PostCardEditor)
+export default connect(mapStateToProps)(PostCardEditor)
