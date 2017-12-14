@@ -235,3 +235,70 @@ export function createComment(values, postId) { // values from redux-form
     }
 }
 
+/* VOTE ON COMMENT
+**************************************************************/
+
+export const VOTE_ON_COMMENT = 'VOTE_ON_COMMENT';
+function voteOnCommentSuccess(comment) {
+    return {
+        type: VOTE_ON_COMMENT,
+        comment,
+    }
+}
+
+export function voteOnComment(commentId, vote) {
+
+    return dispatch => {
+		axios.post(`${API}/comments/${commentId}`, { option: vote })
+				.then(res => {
+					dispatch(voteOnCommentSuccess(res.data))
+				})
+    }
+}
+
+/* EDIT A COMMENT
+**************************************************************/
+
+export const EDIT_COMMENT = 'EDIT_COMMENT';
+function editCommentSuccess(comment) {
+    return {
+        type: EDIT_COMMENT,
+        comment
+    }
+}
+
+export function editComment(commentId, values) {
+
+	const { body } = values
+
+    const comment = {
+    	body
+    } 
+
+    return dispatch => {
+		axios.put(`${API}/comments/${commentId}`, comment)
+				.then(res => {
+					dispatch(editCommentSuccess(res.data))
+				})
+    }
+}
+
+/* DELETE COMMENT
+**************************************************************/
+
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+function deleteCommentSuccess(comment) {
+    return {
+        type: DELETE_COMMENT,
+        comment
+    }
+}
+export function deleteComment(commentId) {
+    return dispatch => {
+		axios.delete(`${API}/comments/${commentId}`)
+				.then(res => {
+					dispatch(deleteCommentSuccess(res.data))
+				})
+    }
+}
+

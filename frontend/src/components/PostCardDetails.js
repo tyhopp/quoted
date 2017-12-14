@@ -5,7 +5,7 @@ import Modal from 'react-modal'
 import Loading from 'react-loading'
 
 // actions
-import { fetchComments, fetchOnePost, createComment, voteOnPost, deletePost } from '../actions'
+import { fetchComments, fetchOnePost, voteOnPost, deletePost, createComment, voteOnComment, deleteComment } from '../actions'
 
 // utils
 import { capitalize, convertTimeStamp } from '../utils/helpers'
@@ -43,15 +43,21 @@ class PostCardDetails extends Component {
 		this.props.dispatch(fetchOnePost(postId)) // fetch post details
 		this.props.dispatch(fetchComments(postId)) // fetch comments, pass post id
 	}
+	componentWillReceiveProps(nextProps){
+		const postId = this.props.postId // from Home component
+		if (this.props.comments.comments !== nextProps.comments.comments) {
+			this.props.dispatch(fetchComments(postId)) // re-fetch comments 
+		}
+	}
 	_handleDetailsModal() {
 		this.props.closeDetailsModal()
 	}
-	_handleUpVote() {
+	_handleUpVotePost() {
 		const postId = this.props.postId
 		const vote = 'upVote'
 		this.props.dispatch(voteOnPost(postId, vote))
 	}
-    _handleDownVote() {
+    _handleDownVotePost() {
         const postId = this.props.postId
         const vote = 'downVote'
         this.props.dispatch(voteOnPost(postId, vote))
@@ -60,6 +66,20 @@ class PostCardDetails extends Component {
     	const postId = this.props.postId
     	this.props.dispatch(deletePost(postId))
     	this.props.closeDetailsModal()
+    }
+    _handleUpVoteComment(comment) {
+		const commentId = comment.id
+		const vote = 'upVote'
+		this.props.dispatch(voteOnComment(commentId, vote))
+	}
+    _handleDownVoteComment(comment) {
+        const commentId = comment.id
+        const vote = 'downVote'
+        this.props.dispatch(voteOnComment(commentId, vote))
+    }
+    _handleDeleteComment(comment) {
+    	const commentId = comment.id
+    	this.props.dispatch(deleteComment(commentId))
     }
 	_onSubmit(values) {
 		const postId = this.props.postId
@@ -114,14 +134,14 @@ class PostCardDetails extends Component {
 				        		</div>
 				        		<div className="postEditorActionItem">
 									<button className="postEditorThumbsUp"
-											onClick={() => this._handleUpVote()}
+											onClick={() => this._handleUpVotePost()}
 									>
 										<FaThumbsUp />
 									</button>
 								</div>
 								<div className="postEditorActionItem">
 									<button className="postEditorThumbsDown"
-											onClick={() => this._handleDownVote()}
+											onClick={() => this._handleDownVotePost()}
 									>
 										<FaThumbsDown />
 									</button>
@@ -229,27 +249,27 @@ class PostCardDetails extends Component {
 											<div className="postEditorCommentActionItems">
 												<div className="postEditorAuthorAlign postEditorActionItem">
 													<MdAccountCircle />
-													<div className="postEditorAuthor">
-														Jane
+													<div key={comment.author} className="postEditorAuthor">
+														{capitalize(comment.author)}
 													</div>
-													<div className="postEditorAuthor">
-														/ Jan 12 @ 4PM
+													<div key={comment.timestamp} className="postEditorAuthor">
+														{convertTimeStamp(comment)}
 													</div>
 												</div>
 						                		<div className="postEditorActionItem">
 													<button className="postEditorThumbsUp">
-														<FaThumbsUp />
+														<FaThumbsUp onClick={() => this._handleUpVoteComment(comment)}/>
 													</button>
 												</div>
 												<div className="postEditorActionItem">
 													<button className="postEditorThumbsDown">
-														<FaThumbsDown />
+														<FaThumbsDown onClick={() => this._handleDownVoteComment(comment)}/>
 													</button>
 												</div>
 												<div className="postEditorActionItem">
 													<div className="postEditorVoteScore">
-							                            <div className="postEditorVoteScoreCount">
-							                                +8
+							                            <div key={comment.voteScore} className="postEditorVoteScoreCount">
+							                                {comment.voteScore}
 							                            </div>
 							                        </div>
 							                    </div>
@@ -268,7 +288,9 @@ class PostCardDetails extends Component {
 													</div>
 												</button>
 												<button className="postEditorReplyToCommentAlign marg">
-													<div className="postEditorReplyToCommentText gold">
+													<div className="postEditorReplyToCommentText gold"
+														 onClick={() => this._handleDeleteComment(comment)}
+													>
 														Delete
 													</div>
 												</button>

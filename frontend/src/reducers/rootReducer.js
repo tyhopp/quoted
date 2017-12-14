@@ -8,7 +8,10 @@ import {
     EDIT_POST,
     DELETE_POST,
     RECEIVE_COMMENTS,
-    CREATE_COMMENT
+    CREATE_COMMENT,
+    VOTE_ON_COMMENT,
+    EDIT_COMMENT,
+    DELETE_COMMENT
 } from '../actions'
 
  
@@ -75,6 +78,20 @@ function comments (state = [], action) {
             return {
                 ...state,
                 comments: [...state.comments, action.comment] // spread posts to persist original comments array
+            }
+        case VOTE_ON_COMMENT : 
+            return {
+                ...state,
+                comment: [action.comment],
+            }
+        case EDIT_COMMENT :
+            return {
+                ...state,
+                comment: [action.comment]
+            }
+        case DELETE_COMMENT :
+            return {
+                ...state,
             }
         default : 
             return state;
