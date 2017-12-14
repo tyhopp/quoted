@@ -13,7 +13,7 @@ import FaClose from 'react-icons/lib/fa/close'
 import '../styles/All.css'
 import '../styles/PostCardEditor.css';
 
-class PostCardEditor extends Component {
+class PostCardPostEditor extends Component {
 	constructor(props) {
 		super(props);
 		this._handleEditModal = this._handleEditModal.bind(this);
@@ -115,10 +115,10 @@ function mapStateToProps(state) {
 	}
 }
 
-PostCardEditor = reduxForm({
+PostCardPostEditor = reduxForm({
 	form: 'editPost',
 
-})(PostCardEditor)
+})(PostCardPostEditor)
 
 
-export default connect(mapStateToProps)(PostCardEditor)
+export default connect(mapStateToProps)(PostCardPostEditor)

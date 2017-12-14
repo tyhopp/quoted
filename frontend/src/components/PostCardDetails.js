@@ -18,7 +18,7 @@ import FaThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
 
 // project components
-import PostCardEditor from './PostCardEditor'
+import PostCardPostEditor from './PostCardPostEditor'
 
 // project styles
 import '../styles/All.css'
@@ -287,7 +287,7 @@ class PostCardDetails extends Component {
 								</div>
 							:   <div>
 							    	<div className="postEditorBg" /> 
-									<PostCardEditor closeEditModal={this.closeEditModal} 
+									<PostCardPostEditor closeEditModal={this.closeEditModal} 
 													post={post}
 									/>
 								</div>

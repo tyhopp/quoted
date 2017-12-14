@@ -3,19 +3,12 @@ import { Link } from 'react-router-dom'
 
 // project components
 import Category from '../components/Category'
-import PostCardEditor from './PostCardEditor'
 
 // project styles
 import '../styles/All.css'
 import '../styles/NavBar.css';
 
 class NavBar extends Component {
-
-	openIt() {
-		return (
-			<PostCardEditor />
-		)
-	}
 
   render() {
     return (
