@@ -5,7 +5,7 @@ import Modal from 'react-modal'
 import Loading from 'react-loading'
 
 // actions
-import { fetchComments, fetchOnePost, voteOnPost, deletePost, createComment, voteOnComment, deleteComment } from '../actions'
+import { fetchOnePost, voteOnPost, deletePost, fetchComments, fetchOneComment, createComment, voteOnComment, deleteComment } from '../actions'
 
 // utils
 import { capitalize, convertTimeStamp } from '../utils/helpers'
@@ -41,11 +41,12 @@ class PostCardDetails extends Component {
 	componentDidMount() {
 		const postId = this.props.postId // from Home component
 		this.props.dispatch(fetchOnePost(postId)) // fetch post details
-		this.props.dispatch(fetchComments(postId)) // fetch comments, pass post id
+		this.props.dispatch(fetchComments(postId)) // fetch comments, passing post id
 	}
 	componentWillReceiveProps(nextProps){
 		const postId = this.props.postId // from Home component
-		if (this.props.comments.comments !== nextProps.comments.comments) {
+		console.log(this.props.comments.comments, nextProps.comments.comments)
+		if (this.props.comment !== nextProps.comment) {
 			this.props.dispatch(fetchComments(postId)) // re-fetch comments 
 		}
 	}
@@ -339,6 +340,7 @@ class PostCardDetails extends Component {
 function mapStateToProps(state) {
 	return {
 		comments: state.comments,
+		comment: state.comment,
 		post: state.post
 	}
 }

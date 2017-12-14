@@ -52,7 +52,7 @@ export function fetchPosts (posts) {
 	}
 }
 
-/* RECEIVE ONE POST
+/* RECEIVE A POST
 **************************************************************/
 
 export const RECEIVE_A_POST = 'RECEIVE_A_POST';
@@ -201,6 +201,25 @@ export function fetchComments (postId, comments) {
 			   		dispatch(receiveComments(comments.data)) // remember to append .data when using axios
 			   	})
 	}
+}
+
+/* RECEIVE A COMMENT
+**************************************************************/
+
+export const RECEIVE_A_COMMENT = 'RECEIVE_A_COMMENT';
+function receiveOneComment(comment) {
+    return {
+        type: RECEIVE_A_COMMENT,
+        comment
+    }
+}
+export function fetchOneComment(commentId) {
+    return dispatch => {
+		axios.get(`${API}/comments/${commentId}`)
+				.then(res => {
+					dispatch(receiveOneComment(res.data))
+				})
+    }
 }
 
 /* CREATE COMMENT

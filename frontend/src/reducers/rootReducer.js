@@ -8,6 +8,7 @@ import {
     EDIT_POST,
     DELETE_POST,
     RECEIVE_COMMENTS,
+    RECEIVE_A_COMMENT,
     CREATE_COMMENT,
     VOTE_ON_COMMENT,
     EDIT_COMMENT,
@@ -66,20 +67,14 @@ function posts (state = initialState, action) {
     }
 }
 
-function comments (state = [], action) {
+function comment (state = [], action) {
     switch(action.type) {
-        case RECEIVE_COMMENTS :
+        case RECEIVE_A_COMMENT :
             return {
                 ...state,
-                comments: action.comments
+                comment: [action.post]
             }
-        case CREATE_COMMENT :
-            console.log('In comment create reducer', action.comment)
-            return {
-                ...state,
-                comments: [...state.comments, action.comment] // spread posts to persist original comments array
-            }
-        case VOTE_ON_COMMENT : 
+       case VOTE_ON_COMMENT : 
             return {
                 ...state,
                 comment: [action.comment],
@@ -98,10 +93,33 @@ function comments (state = [], action) {
     }
 }
 
+function comments (state = [], action) {
+    switch(action.type) {
+        case RECEIVE_COMMENTS :
+            return {
+                ...state,
+                comments: action.comments
+            }
+        case CREATE_COMMENT :
+            return {
+                ...state,
+                comments: [...state.comments, action.comment] // spread posts to persist original comments array
+            }
+        case VOTE_ON_COMMENT : 
+            return {
+                ...state,
+                comment: [action.comment],
+            }
+        default : 
+            return state;
+    }
+}
+
 
 const rootReducer = combineReducers({  // short hand property names
   post,
   posts,
+  comment,
   comments,
   form: formReducer
 })
