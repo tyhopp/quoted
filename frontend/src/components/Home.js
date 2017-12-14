@@ -41,7 +41,8 @@ class Home extends Component {
 		this.props.dispatch(fetchPosts()) // fetch posts 
 	}
 	componentWillReceiveProps(nextProps){
-		if (this.props.posts.posts.id !== nextProps.posts.posts.id) { // be sure to compare values, not entire objects
+		// this.props and nextProps are arrays
+		if (this.props.posts.posts !== nextProps.posts.posts) {
 			this.props.dispatch(fetchPosts()) // re-fetch posts 
 		}
 	}

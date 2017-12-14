@@ -110,7 +110,7 @@ export const VOTE_ON_POST = 'VOTE_ON_POST';
 function voteOnPostSuccess(post) {
     return {
         type: VOTE_ON_POST,
-        post
+        post,
     }
 }
 

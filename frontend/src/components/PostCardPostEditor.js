@@ -35,7 +35,6 @@ class PostCardPostEditor extends Component {
 
 	    return (
 	    	<div>
-	    		{console.log('Props: ', this.props)}
 				<div className="postEditorContainerTwo">
 					<div className="postEditorRowAlign">
 						<div className="postEditorRow modalTwoHeaderAlign">

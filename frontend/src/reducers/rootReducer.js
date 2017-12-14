@@ -26,7 +26,7 @@ function post (state = [], action) {
         case VOTE_ON_POST : 
             return {
                 ...state,
-                post: [action.post]
+                post: [action.post],
             }
         case EDIT_POST :
             return {
