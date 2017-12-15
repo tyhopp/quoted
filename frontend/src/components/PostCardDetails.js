@@ -96,8 +96,10 @@ class PostCardDetails extends Component {
 	closeEditPostModal = () => this.setState(() => ({ editPostModalOpen: false }))
 	openEditCommentModal(comment) {
 		const commentId = comment.id
-		this.props.dispatch(fetchOneComment(commentId))
-		this.setState({ editCommentModalOpen: true })
+		this.setState({ loadingEditCommentModal: true }) // show spinner
+		this.props.dispatch(fetchOneComment(commentId)) // dispatch to load correct comment
+		setTimeout(() => { this.setState({ loadingEditCommentModal: false }) }, 1000); // delay to allow dispatch complete
+		this.setState({ editCommentModalOpen: true }) // open component
 	}
 	closeEditCommentModal = () => this.setState(() => ({ editCommentModalOpen: false }))
 
@@ -327,11 +329,11 @@ class PostCardDetails extends Component {
 		          contentLabel='Modal'
 		        >
 					<div>
-						{this.state.loadingEditPost === true
+						{this.state.loadingEditPostModal === true
 							?   <div>
 									<div className="postEditorBg" />
 									<Loading type='bubbles' 
-											 delay={200} 
+											 delay={1000} 
 											 color='#fed80a' 
 											 className="loading"
 											 width={120} />
@@ -354,7 +356,7 @@ class PostCardDetails extends Component {
 		          contentLabel='Modal'
 		        >
 					<div>
-						{this.state.loadingEditComment === true
+						{this.state.loadingEditCommentModal === true
 							?   <div>
 									<div className="postEditorBg" />
 									<Loading type='bubbles' 
