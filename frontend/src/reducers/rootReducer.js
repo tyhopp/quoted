@@ -87,6 +87,7 @@ function comment (state = [], action) {
         case DELETE_COMMENT :
             return {
                 ...state,
+                comment: [action.comment]
             }
         default : 
             return state;
@@ -108,7 +109,6 @@ function comments (state = [], action) {
         case VOTE_ON_COMMENT : 
             return {
                 ...state,
-                comment: [action.comment],
             }
         default : 
             return state;

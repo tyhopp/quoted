@@ -45,9 +45,11 @@ class PostCardDetails extends Component {
 	}
 	componentWillReceiveProps(nextProps){
 		const postId = this.props.postId // from Home component
-		console.log(this.props.comments.comments, nextProps.comments.comments)
 		if (this.props.comment !== nextProps.comment) {
 			this.props.dispatch(fetchComments(postId)) // re-fetch comments 
+		}
+		if (this.props.post !== nextProps.post) {
+			this.props.dispatch(fetchOnePost(postId)) // fetch post details
 		}
 	}
 	_handleDetailsModal() {
@@ -98,6 +100,7 @@ class PostCardDetails extends Component {
 	    return (
 
 	    	<div>
+	    		{console.log(this.props)}
 	    		{post && post.map((post) => (
 				<div key={post.id} className="postEditorContainer">
 					<div className="postEditorHeader">
