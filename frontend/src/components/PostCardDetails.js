@@ -110,7 +110,6 @@ class PostCardDetails extends Component {
 	    return (
 
 	    	<div>
-	    		{console.log(this.props)}
 	    		{post && post.map((post) => (
 				<div key={post.id} className="postEditorContainer">
 					<div className="postEditorHeader">

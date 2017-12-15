@@ -91,7 +91,15 @@ class PostCardCommentEditor extends Component {
 }
 
 function mapStateToProps(state) {
-	console.log(state.comment.comment)
+	if (state.comment.comment) {
+		const comment = state.comment.comment[0]
+
+		return {
+			initialValues: {
+				body: comment.body
+			}
+		}
+	}
 }
 
 PostCardCommentEditor = reduxForm({
