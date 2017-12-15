@@ -19,6 +19,7 @@ import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
 
 // project components
 import PostCardPostEditor from './PostCardPostEditor'
+import PostCardCommentEditor from './PostCardCommentEditor'
 
 // project styles
 import '../styles/All.css'
@@ -34,8 +35,10 @@ class PostCardDetails extends Component {
 
 	state = {
 		detailsModalOpen: this.props.detailsModalOpen,
-		loadingEditModal: false,
-		editModalOpen: false,
+		loadingEditPostModal: false,
+		editPostModalOpen: false,
+		loadingEditCommentModal: false,
+		editCommentModalOpen: false,
 	}
 
 	componentDidMount() {
@@ -89,11 +92,18 @@ class PostCardDetails extends Component {
 		this.props.dispatch(createComment(values, postId)) // push form values to store
 		this.props.dispatch(reset('comment')); // from reduxForm, resets values
 	}
-	openEditModal = () => this.setState(() => ({ editModalOpen: true }))
-	closeEditModal = () => this.setState(() => ({ editModalOpen: false }))
+	openEditPostModal = () => this.setState(() => ({ editPostModalOpen: true }))
+	closeEditPostModal = () => this.setState(() => ({ editPostModalOpen: false }))
+	openEditCommentModal(comment) {
+		const commentId = comment.id
+		this.props.dispatch(fetchOneComment(commentId))
+		this.setState({ editCommentModalOpen: true })
+	}
+	closeEditCommentModal = () => this.setState(() => ({ editCommentModalOpen: false }))
 
     render() {
     const { post } = this.props.post
+    const { comment } = this.props.comment
     const { comments } = this.props.comments
     const { handleSubmit } = this.props // provided from reduxForm
 
@@ -171,7 +181,7 @@ class PostCardDetails extends Component {
 						</div>
 						<div className="postEditorRow">
 							<button className="gold marg"
-									onClick={() => this.openEditModal()}
+									onClick={() => this.openEditPostModal()}
 							>
 								Edit
 							</button>
@@ -287,7 +297,9 @@ class PostCardDetails extends Component {
 													</div>
 												</button>
 												<button className="postEditorReplyToCommentAlign marg">
-													<div className="postEditorReplyToCommentText gold">
+													<div className="postEditorReplyToCommentText gold"
+														 onClick={() => this.openEditCommentModal(comment)}
+													>
 														Edit
 													</div>
 												</button>
@@ -311,8 +323,8 @@ class PostCardDetails extends Component {
 				<Modal // EDIT POST MODAL
 		          className='modal'
 		          overlayClassName='createOverlay'
-		          isOpen={this.state.editModalOpen}
-		          onRequestClose={this.closeEditModal}
+		          isOpen={this.state.editPostModalOpen}
+		          onRequestClose={this.closeEditPostModal}
 		          contentLabel='Modal'
 		        >
 					<div>
@@ -327,8 +339,35 @@ class PostCardDetails extends Component {
 								</div>
 							:   <div>
 							    	<div className="postEditorBg" /> 
-									<PostCardPostEditor closeEditModal={this.closeEditModal} 
+									<PostCardPostEditor closeEditPostModal={this.closeEditPostModal} 
 													post={post}
+									/>
+								</div>
+						}
+					</div>
+		        </Modal>
+
+		        <Modal // EDIT COMMENT MODAL
+		          className='modal'
+		          overlayClassName='createOverlay'
+		          isOpen={this.state.editCommentModalOpen}
+		          onRequestClose={this.closeEditCommentModal}
+		          contentLabel='Modal'
+		        >
+					<div>
+						{this.state.loadingEditComment === true
+							?   <div>
+									<div className="postEditorBg" />
+									<Loading type='bubbles' 
+											 delay={200} 
+											 color='#fed80a' 
+											 className="loading"
+											 width={120} />
+								</div>
+							:   <div>
+							    	<div className="postEditorBg" /> 
+									<PostCardCommentEditor closeEditCommentModal={this.closeEditCommentModal} 
+													comment={comment}
 									/>
 								</div>
 						}

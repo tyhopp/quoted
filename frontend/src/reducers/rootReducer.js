@@ -72,7 +72,7 @@ function comment (state = [], action) {
         case RECEIVE_A_COMMENT :
             return {
                 ...state,
-                comment: [action.post]
+                comment: [action.comment]
             }
        case VOTE_ON_COMMENT : 
             return {

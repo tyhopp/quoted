@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form'
 
 // actions
-import { editPost } from '../actions'
+import { editComment } from '../actions'
 
 // icons
 import FaQuoteLeft from 'react-icons/lib/fa/quote-left'
@@ -13,25 +13,24 @@ import FaClose from 'react-icons/lib/fa/close'
 import '../styles/All.css'
 import '../styles/PostCardEditor.css';
 
-class PostCardPostEditor extends Component {
+class PostCardCommentEditor extends Component {
 	constructor(props) {
 		super(props);
-		this._handleEditPostModal = this._handleEditPostModal.bind(this);
+		this._handleEditCommentModal = this._handleEditCommentModal.bind(this);
 		this._onSubmit = this._onSubmit.bind(this);
 	}
 
-	_handleEditPostModal() {
-		this.props.closeEditPostModal()
+	_handleEditCommentModal() {
+		this.props.closeEditCommentModal()
 	}
-
 	_onSubmit(values) {
-		const postId = this.props.post[0].id
-		this.props.dispatch(editPost(postId, values)) // edit post
-		this.props.closeEditPostModal() // destroys form
+		const commentId = this.props.comment[0].id
+		this.props.dispatch(editComment(commentId, values)) // edit post
+		this.props.closeEditCommentModal() // destroys form
 	}
 
     render() {
-    	const { handleSubmit, post } = this.props // handleSubmit provided from reduxForm
+    	const { handleSubmit, comment } = this.props // handleSubmit provided from reduxForm
 
 	    return (
 	    	<div>
@@ -43,10 +42,10 @@ class PostCardPostEditor extends Component {
 									<FaQuoteLeft />
 								</div>
 								<div className="postEditorCommentTitle">
-									Edit Post
+									Edit Comment
 								</div>
 							</div>
-							<button onClick={this._handleEditPostModal} className="postEditorHeaderItem gold">
+							<button onClick={this._handleEditCommentModal} className="postEditorHeaderItem gold">
 								<FaClose />
 							</button>
 						</div>
@@ -55,21 +54,10 @@ class PostCardPostEditor extends Component {
 						<form className="postEditorReplyBlock"
 							  onSubmit={handleSubmit(this._onSubmit)}
 						>
-							{post && post.map((post) => (
-							<div key={post} className="postEditorReplyBlockAlign">
+							{comment && comment.map((comment) => (
+							<div key={comment} className="postEditorReplyBlockAlign">
 								<div className="postEditorRow">
 									<div className="postEditorReplyMain">
-										<div className="postEditorReplyRow">
-											<div className="postEditorReplyName">
-												<label className="postEditorReplyNamePrompt">
-													Title
-												</label>
-												<Field name="title" 
-													   component="input" 
-													   type="text" 
-												/>
-											</div>
-										</div>
 										<div className="postEditorReplyRow">
 											<div className="postEditorReplyContent">
 												<label className="postEditorReplyContentPrompt">
@@ -103,21 +91,12 @@ class PostCardPostEditor extends Component {
 }
 
 function mapStateToProps(state) {
-
-	const post = state.post.post[0]
-
-	return {
-		initialValues: {
-			title: post.title,
-			body: post.body
-		}
-	}
+	console.log(state.comment.comment)
 }
 
-PostCardPostEditor = reduxForm({
-	form: 'editPost',
+PostCardCommentEditor = reduxForm({
+	form: 'editComment',
+})(PostCardCommentEditor)
 
-})(PostCardPostEditor)
 
-
-export default connect(mapStateToProps)(PostCardPostEditor)
+export default connect(mapStateToProps)(PostCardCommentEditor)
