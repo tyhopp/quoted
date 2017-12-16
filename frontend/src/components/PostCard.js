@@ -40,7 +40,7 @@ class PostCard extends Component {
                     {capitalize(post.category)}
                 </div>
             )
-        }
+        } 
         if (post.category === 'places') {
              return (
                 <div key={post.category} style={green} className="postEditorCategory">
