@@ -5,7 +5,7 @@ import Loading from 'react-loading'
 import { Link } from 'react-router-dom'
 
 // actions
-import { fetchPosts } from '../actions'
+import { fetchOnePost, fetchPosts } from '../actions'
 
 // icons
 import MdAddCircle from 'react-icons/lib/md/add-circle'
@@ -37,15 +37,13 @@ class Home extends Component {
 		detailsModalOpen: false,
 		displayedPost: undefined
 	}
-
-	componentDidMount() {
-		this.props.dispatch(fetchPosts()) // fetch posts 
-	}
-	componentWillReceiveProps(nextProps){
-		// this.props and nextProps are arrays
-		if (this.props.posts.posts !== nextProps.posts.posts) {
+	componentWillReceiveProps(nextProps) {
+		if (this.props.post !== nextProps.post) {
 			this.props.dispatch(fetchPosts()) // re-fetch posts 
 		}
+	}
+	componentDidMount() {
+		this.props.dispatch(fetchPosts()) // fetch posts 
 	}
 	openDetailsModal = (post) => {
 		this.setState({
@@ -154,6 +152,7 @@ class Home extends Component {
 
 function mapStateToProps(state) {
 	return {
+		post: state.post,
 		posts: state.posts,
 	}
 }

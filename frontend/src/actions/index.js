@@ -338,3 +338,14 @@ export function deleteComment(commentId) {
 				})
     }
 }
+
+/* SORT POSTS
+**************************************************************/
+
+export const SORT_POSTS = 'SORT_POSTS';
+export function sortPosts(sortedPosts) {
+    return {
+        type: SORT_POSTS,
+        sortedPosts
+    }
+}

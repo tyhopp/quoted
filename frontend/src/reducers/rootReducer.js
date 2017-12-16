@@ -13,7 +13,8 @@ import {
     CREATE_COMMENT,
     VOTE_ON_COMMENT,
     EDIT_COMMENT,
-    DELETE_COMMENT
+    DELETE_COMMENT,
+    SORT_POSTS
 } from '../actions'
 
  
@@ -67,6 +68,11 @@ function posts (state = initialState, action) {
         case VOTE_ON_POST : 
             return {
                 ...state,
+            }
+        case SORT_POSTS :
+            return {
+                ...state,
+                posts: action.sortedPosts
             }
         default : 
             return state;

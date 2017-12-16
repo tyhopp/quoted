@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import _ from 'lodash';
 
+// actions
+import { sortPosts } from '../actions'
+
 // project components
 import Category from '../components/Category'
 
@@ -14,13 +17,13 @@ class NavBar extends Component {
 
 	sortByVoteScore() {
 		const { posts } = this.props.posts
-		const orderedPosts = _.sortBy(posts, ['voteScore']).reverse() // sort by voteScore
-		console.log(orderedPosts)
+		const sortedPosts = _.sortBy(posts, ['voteScore']).reverse() // sort by voteScore
+		this.props.dispatch(sortPosts(sortedPosts))
 	}
 	sortByTimeStamp() {
 		const { posts } = this.props.posts
-		const orderedPosts = _.sortBy(posts, ['timestamp']) // sort by timestamp
-		console.log(orderedPosts)
+		const sortedPosts = _.sortBy(posts, ['timestamp']) // sort by timestamp
+		this.props.dispatch(sortPosts(sortedPosts))
 	}
 
 	render() {

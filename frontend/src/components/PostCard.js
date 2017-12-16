@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 // actions
-import { voteOnPost } from '../actions'
+import { voteOnPost, fetchPosts } from '../actions'
 
 // utils
 import { capitalize, convertTimeStamp } from '../utils/helpers'
@@ -23,7 +23,6 @@ class PostCard extends Component {
         const postId = this.props.post.id
         const vote = 'upVote'
         this.props.dispatch(voteOnPost(postId, vote))
-
     }
     _handleDownVote(post) {
         const postId = this.props.post.id
