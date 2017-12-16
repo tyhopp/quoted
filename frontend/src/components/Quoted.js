@@ -19,6 +19,9 @@ class Quoted extends Component {
 		return (
 			<div className="container">
 				<Route exact path="/" render={() => ( <Home /> )} />
+				<Route exact path="/people" render={() => ( <Home /> )} />
+				<Route exact path="/places" render={() => ( <Home /> )} />
+				<Route exact path="/things" render={() => ( <Home /> )} />
 			</div>
 		);
 	}
