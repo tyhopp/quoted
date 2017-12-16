@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 // project styles
 import '../styles/All.css'
@@ -9,21 +10,21 @@ class Category extends Component {
     return (
       <div>
         <ul className="categoryList">
-          <button>
+          <Link to="/people">
           	<li className="categoryItem red">
           		People
           	</li>
-          </button>
-          <button>
+          </Link>
+          <Link to="/places">
             <li className="categoryItem green">
               Places
             </li>
-          </button>
-          <button>
+          </Link>
+          <Link to="/things">
             <li className="categoryItem purple">
               Things
             </li>
-          </button>
+          </Link>
         </ul>
       </div>
     );
