@@ -6,22 +6,22 @@ const defaultData = {
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
     timestamp: 1467166872634,
-    title: 'Udacity is the best place to learn React',
-    body: 'Everyone says so after all.',
-    author: 'thingtwo',
-    category: 'react',
-    voteScore: 6,
+    title: 'Good is the enemy of great',
+    body: 'The Giant needed to be great, and we made it that way!',
+    author: 'Joe MacMillan',
+    category: 'things',
+    voteScore: 2,
     deleted: false,
     commentCount: 2
   },
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
     timestamp: 1468479767190,
-    title: 'Learn Redux in 10 minutes!',
-    body: 'Just kidding. It takes more than 10 minutes to learn technology.',
-    author: 'thingone',
-    category: 'redux',
-    voteScore: -5,
+    title: 'The secret to survival in Westeros',
+    body: 'The storms come and go, the waves crash overhead, the big fish eat the little fish, and I keep on paddling.',
+    author: 'Lord Varys',
+    category: 'people',
+    voteScore: 7,
     deleted: false,
     commentCount: 0
   }

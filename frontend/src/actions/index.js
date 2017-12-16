@@ -236,7 +236,6 @@ function createCommentSuccess(comment) {
 export function createComment(values, postId) { // values from redux-form
     
     const { body, author } = values
-    console.log('Values: ', body, author)
 
     const post = {
         id: uuid(),

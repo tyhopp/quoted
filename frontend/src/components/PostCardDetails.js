@@ -87,6 +87,16 @@ class PostCardDetails extends Component {
     	const commentId = comment.id
     	this.props.dispatch(deleteComment(commentId))
     }
+    _toggleCategoryColor(post) {
+ 		const purpleThings = {
+ 			backgroundColor: '#7236D7'
+ 		}
+ 		return (
+	    	<div key={post.category} style={purpleThings} className="postEditorCategory">
+				{capitalize(post.category)}
+			</div>
+		)
+    }
 	_onSubmit(values) {
 		const postId = this.props.postId
 		this.props.dispatch(createComment(values, postId)) // push form values to store
@@ -169,9 +179,7 @@ class PostCardDetails extends Component {
 				                    </div>
 				                </div>
 				                <div className="postEditorActionItem">
-									<div key={post.category} className="postEditorCategory">
-										{capitalize(post.category)}
-									</div>
+				                	{this._toggleCategoryColor(post)}
 								</div>
 							</div>
 						</div>

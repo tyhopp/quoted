@@ -8,8 +8,8 @@ const defaultData = {
     id: '894tuq4ut84ut8v4t8wun89g',
     parentId: "8xf0y6ziyjabvozdd253nd",
     timestamp: 1468166872634,
-    body: 'Hi there! I am a COMMENT.',
-    author: 'thingtwo',
+    body: 'It was great until you ripped out its soul. My OS brought it to life.',
+    author: 'Cameron',
     voteScore: 6,
     deleted: false,
     parentDeleted: false
@@ -18,8 +18,8 @@ const defaultData = {
     id: '8tu4bsun805n8un48ve89',
     parentId: "8xf0y6ziyjabvozdd253nd",
     timestamp: 1469479767190,
-    body: 'Comments. Are. Cool.',
-    author: 'thingone',
+    body: 'It would not exist, let alone be great, without the engineers. Do not forget that.',
+    author: 'Gordon',
     voteScore: -5,
     deleted: false,
     parentDeleted: false
