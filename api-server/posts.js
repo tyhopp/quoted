@@ -20,12 +20,24 @@ const defaultData = {
     title: 'The secret to survival in Westeros',
     body: 'The storms come and go, the waves crash overhead, the big fish eat the little fish, and I keep on paddling.',
     author: 'Lord Varys',
-    category: 'people',
+    category: 'places',
     voteScore: 7,
+    deleted: false,
+    commentCount: 0
+  },
+    "5s76ok3ym7mf1p33lnez": {
+    id: '5s76ok3ym7mf1p33lnez',
+    timestamp: 1468578763690,
+    title: 'On design and the like',
+    body: 'As we say in Berlin, there are many ways to bake a parrot.',
+    author: 'Erik Spiekermann',
+    category: 'people',
+    voteScore: 3,
     deleted: false,
     commentCount: 0
   }
 }
+
 
 function getData (token) {
   let data = db[token]

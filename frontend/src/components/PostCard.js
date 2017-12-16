@@ -30,6 +30,32 @@ class PostCard extends Component {
         const vote = 'downVote'
         this.props.dispatch(voteOnPost(postId, vote))
     }
+    _toggleCategoryColor(post) {
+        const red = { backgroundColor: '#DA4747' }
+        const green = { backgroundColor: '#1CA189' }
+        const purple = { backgroundColor: '#7236D7' }
+        if (post.category === 'people') {
+            return (
+                <div key={post.category} style={red} className="postEditorCategory">
+                    {capitalize(post.category)}
+                </div>
+            )
+        }
+        if (post.category === 'places') {
+             return (
+                <div key={post.category} style={green} className="postEditorCategory">
+                    {capitalize(post.category)}
+                </div>
+            )
+        }
+        if (post.category === 'things') {
+             return (
+                <div key={post.category} style={purple} className="postEditorCategory">
+                    {capitalize(post.category)}
+                </div>
+            )
+        }
+    }
 
     render() {
     const { post } = this.props
@@ -84,9 +110,7 @@ class PostCard extends Component {
                                 </div>
                             </div>
                 		</div>
-                		<div key={post.category} className="postCategory">
-                			{capitalize(post.category)}
-                		</div>
+                		{this._toggleCategoryColor(post)}
                 	</div>
                 </div>
             </div>

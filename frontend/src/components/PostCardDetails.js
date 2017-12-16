@@ -88,14 +88,30 @@ class PostCardDetails extends Component {
     	this.props.dispatch(deleteComment(commentId))
     }
     _toggleCategoryColor(post) {
- 		const purpleThings = {
- 			backgroundColor: '#7236D7'
+    	const red = { backgroundColor: '#DA4747' }
+    	const green = { backgroundColor: '#1CA189' }
+ 		const purple = { backgroundColor: '#7236D7' }
+ 		if (post.category === 'people') {
+ 			return (
+		    	<div key={post.category} style={red} className="postEditorCategory">
+					{capitalize(post.category)}
+				</div>
+			)
  		}
- 		return (
-	    	<div key={post.category} style={purpleThings} className="postEditorCategory">
-				{capitalize(post.category)}
-			</div>
-		)
+ 		if (post.category === 'places') {
+ 			 return (
+		    	<div key={post.category} style={green} className="postEditorCategory">
+					{capitalize(post.category)}
+				</div>
+			)
+ 		}
+ 		if (post.category === 'things') {
+ 			 return (
+		    	<div key={post.category} style={purple} className="postEditorCategory">
+					{capitalize(post.category)}
+				</div>
+			)
+ 		}
     }
 	_onSubmit(values) {
 		const postId = this.props.postId
