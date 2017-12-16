@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Modal from 'react-modal'
 import Loading from 'react-loading'
+import { Link } from 'react-router-dom'
 
 // actions
 import { fetchPosts } from '../actions'

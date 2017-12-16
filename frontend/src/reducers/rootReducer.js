@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form'
 import { 
 	RECEIVE_POSTS,
     RECEIVE_A_POST,
+    RECEIVE_CATEGORY_POSTS,
 	CREATE_POST,
     VOTE_ON_POST,
     EDIT_POST,
@@ -49,6 +50,11 @@ function post (state = [], action) {
 function posts (state = initialState, action) {
     switch(action.type) {
         case RECEIVE_POSTS :
+            return {
+                ...state,
+                posts: action.posts
+            }
+        case RECEIVE_CATEGORY_POSTS :
             return {
                 ...state,
                 posts: action.posts

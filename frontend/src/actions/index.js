@@ -71,6 +71,25 @@ export function fetchOnePost(postId) {
     }
 }
 
+/* RECEIVE POSTS BY CATEGORY
+**************************************************************/
+
+export const RECEIVE_CATEGORY_POSTS = 'RECEIVE_CATEGORY_POSTS';
+function receiveCategoryPosts(posts) {
+    return {
+        type: RECEIVE_CATEGORY_POSTS,
+        posts
+    }
+}
+export function fetchCategoryPosts(category) {
+    return dispatch => {
+        axios.get(`${API}/${category}/posts`)
+                .then(res => {
+                    dispatch(receiveCategoryPosts(res.data))
+                })
+    }
+}
+
 /* CREATE POST
 **************************************************************/
 

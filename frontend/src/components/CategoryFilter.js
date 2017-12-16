@@ -4,7 +4,7 @@ import Modal from 'react-modal'
 import Loading from 'react-loading'
 
 // actions
-import { fetchPosts } from '../actions'
+import { fetchCategoryPosts } from '../actions'
 
 // icons
 import MdAddCircle from 'react-icons/lib/md/add-circle'
@@ -21,7 +21,7 @@ import '../styles/All.css'
 
 
 
-class CategoryPeople extends Component {
+class CategoryFilter extends Component {
 	constructor(props) {
 		super(props);
 		// binds 'this' to this component
@@ -38,12 +38,12 @@ class CategoryPeople extends Component {
 	}
 
 	componentDidMount() {
-		this.props.dispatch(fetchPosts()) // fetch posts 
+		this.props.dispatch(fetchCategoryPosts(this.props.category)) // fetch posts by category
 	}
 	componentWillReceiveProps(nextProps){
 		// this.props and nextProps are arrays
 		if (this.props.posts.posts !== nextProps.posts.posts) {
-			this.props.dispatch(fetchPosts()) // re-fetch posts 
+			this.props.dispatch(fetchCategoryPosts(this.props.category)) // re-fetch posts by category
 		}
 	}
 	openDetailsModal = (post) => {
@@ -158,4 +158,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(CategoryPeople)
+export default connect(mapStateToProps)(CategoryFilter)
