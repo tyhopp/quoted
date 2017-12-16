@@ -42,7 +42,7 @@ class CategoryFilter extends Component {
 	}
 	componentWillReceiveProps(nextProps){
 		// this.props and nextProps are arrays
-		if (this.props.posts.posts !== nextProps.posts.posts) {
+		if (this.props.post !== nextProps.post) {
 			this.props.dispatch(fetchCategoryPosts(this.props.category)) // re-fetch posts by category
 		}
 	}
