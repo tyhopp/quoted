@@ -293,11 +293,6 @@ class PostCardDetails extends Component {
 										<div className="commentEditorSubRow">
 											<div className="postEditorActionOnComment">
 												<button className="postEditorReplyToCommentAlign marg">
-													<div className="postEditorReplyToCommentText gold">
-														Reply
-													</div>
-												</button>
-												<button className="postEditorReplyToCommentAlign marg">
 													<div className="postEditorReplyToCommentText gold"
 														 onClick={() => this.openEditCommentModal(comment)}
 													>
