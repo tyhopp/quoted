@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 // project styles
 import '../styles/All.css'
@@ -31,4 +32,11 @@ class Category extends Component {
   }
 }
 
-export default Category;
+function mapStateToProps(state) {
+  return {
+    post: state.post,
+    posts: state.posts,
+  }
+}
+
+export default withRouter(connect()(Category))

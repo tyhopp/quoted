@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Modal from 'react-modal'
 import Loading from 'react-loading'
+import { withRouter } from 'react-router-dom'
 
 // actions
 import { fetchCategoryPosts } from '../actions'
@@ -38,6 +39,8 @@ class CategoryFilter extends Component {
 	}
 
 	componentDidMount() {
+		console.log(this.props.category)
+		console.log(this.props.location)
 		this.props.dispatch(fetchCategoryPosts(this.props.category)) // fetch posts by category
 	}
 	componentWillReceiveProps(nextProps){
@@ -158,4 +161,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(CategoryFilter)
+export default withRouter(connect(mapStateToProps)(CategoryFilter))

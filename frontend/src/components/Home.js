@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Modal from 'react-modal'
 import Loading from 'react-loading'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 // actions
 import { fetchOnePost, fetchPosts } from '../actions'
@@ -78,10 +78,10 @@ class Home extends Component {
 							<div key={post.id} className="postContainer">
 								{/* map id: {post.id} */}
 								<PostCard post={post} />
-								<button className="openPostButton" 
+								<Link to={`/${post.category}/${post.id}`} className="openPostButton" 
 										onClick={() => this.openDetailsModal(post)}>
 									See more
-								</button>
+								</Link>
 							</div>
 						))}
 					</div>
@@ -158,4 +158,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(Home)
+export default withRouter(connect(mapStateToProps)(Home))

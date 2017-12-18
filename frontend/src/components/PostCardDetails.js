@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reset, reduxForm } from 'redux-form'
 import Modal from 'react-modal'
 import Loading from 'react-loading'
+import { Link, withRouter } from 'react-router-dom'
 
 // actions
 import { fetchOnePost, voteOnPost, deletePost, fetchComments, fetchOneComment, createComment, voteOnComment, deleteComment } from '../actions'
@@ -152,10 +153,10 @@ class PostCardDetails extends Component {
 								</div>
 							</div>
 						</div>
-						<button className="gold"
+						<Link to="/" className="gold"
 								onClick={this._handleDetailsModal}>
 							<FaClose />
-						</button>
+						</Link>
 					</div>
 					<div className="postEditorMain">
 						<div className="postEditorRow">
@@ -210,11 +211,11 @@ class PostCardDetails extends Component {
 							>
 								Edit
 							</button>
-							<button className="gold marg"
+							<Link to="/" className="gold marg"
 									onClick={() => this._handleDeletePost()}
 							>
 								Delete
-							</button>
+							</Link>
 						</div>
 						<div className="postEditorRow">
 							<div className="postEditorLineBreak" />
@@ -411,4 +412,4 @@ PostCardDetails = reduxForm({
 	form: 'comment',
 })(PostCardDetails)
 
-export default connect(mapStateToProps)(PostCardDetails)
+export default withRouter(connect(mapStateToProps)(PostCardDetails))
