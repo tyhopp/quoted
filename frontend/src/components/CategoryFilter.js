@@ -39,12 +39,9 @@ class CategoryFilter extends Component {
 	}
 
 	componentDidMount() {
-		console.log(this.props.category)
-		console.log(this.props.location)
 		this.props.dispatch(fetchCategoryPosts(this.props.category)) // fetch posts by category
 	}
 	componentWillReceiveProps(nextProps){
-		// this.props and nextProps are arrays
 		if (this.props.post !== nextProps.post) {
 			this.props.dispatch(fetchCategoryPosts(this.props.category)) // re-fetch posts by category
 		}
@@ -156,6 +153,7 @@ class CategoryFilter extends Component {
 
 function mapStateToProps(state) {
 	return {
+		post: state.post,
 		posts: state.posts,
 	}
 }

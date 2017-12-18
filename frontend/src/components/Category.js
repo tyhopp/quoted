@@ -32,11 +32,4 @@ class Category extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    post: state.post,
-    posts: state.posts,
-  }
-}
-
 export default withRouter(connect()(Category))

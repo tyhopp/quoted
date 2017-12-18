@@ -114,6 +114,69 @@ class PostCardDetails extends Component {
 			)
  		}
     }
+    _toggleComments(comment) {
+    	if (!comment.parentDeleted) {
+    		return (
+				<div className="commentEditorRow" key={comment.id}>
+					<div className="commentEditorSubRow">
+						<div className="postEditorCommentMain">
+							<div key={comment.body} className="postEditorCommentText">
+								{comment.body}
+							</div>
+						</div>
+					</div>
+					<div className="commentEditorSubRow">
+						<div className="postEditorCommentActionItems">
+							<div className="postEditorAuthorAlign postEditorActionItem">
+								<MdAccountCircle />
+								<div key={comment.author} className="postEditorAuthor">
+									{capitalize(comment.author)}
+								</div>
+								<div key={comment.timestamp} className="postEditorAuthor">
+									{convertTimeStamp(comment)}
+								</div>
+							</div>
+		            		<div className="postEditorActionItem">
+								<button className="postEditorThumbsUp">
+									<FaThumbsUp onClick={() => this._handleUpVoteComment(comment)}/>
+								</button>
+							</div>
+							<div className="postEditorActionItem">
+								<button className="postEditorThumbsDown">
+									<FaThumbsDown onClick={() => this._handleDownVoteComment(comment)}/>
+								</button>
+							</div>
+							<div className="postEditorActionItem">
+								<div className="postEditorVoteScore">
+		                            <div key={comment.voteScore} className="postEditorVoteScoreCount">
+		                                {comment.voteScore}
+		                            </div>
+		                        </div>
+		                    </div>
+						</div>
+					</div>
+					<div className="commentEditorSubRow">
+						<div className="postEditorActionOnComment">
+							<button className="postEditorReplyToCommentAlign marg">
+								<div className="postEditorReplyToCommentText gold"
+									 onClick={() => this.openEditCommentModal(comment)}
+								>
+									Edit
+								</div>
+							</button>
+							<button className="postEditorReplyToCommentAlign marg">
+								<div className="postEditorReplyToCommentText gold"
+									 onClick={() => this._handleDeleteComment(comment)}
+								>
+									Delete
+								</div>
+							</button>
+						</div>
+					</div>
+				</div>
+    		)
+    	}
+    }
 	_onSubmit(values) {
 		const postId = this.props.postId
 		this.props.dispatch(createComment(values, postId)) // push form values to store
@@ -277,63 +340,7 @@ class PostCardDetails extends Component {
 						<div className="postEditorCommentBlock">
 							<div className="postEditorCommentBlockAlign">
 								{comments && comments.map((comment) => (
-									<div className="commentEditorRow" key={comment.id}>
-										<div className="commentEditorSubRow">
-											<div className="postEditorCommentMain">
-												<div key={comment.body} className="postEditorCommentText">
-													{comment.body}
-												</div>
-											</div>
-										</div>
-										<div className="commentEditorSubRow">
-											<div className="postEditorCommentActionItems">
-												<div className="postEditorAuthorAlign postEditorActionItem">
-													<MdAccountCircle />
-													<div key={comment.author} className="postEditorAuthor">
-														{capitalize(comment.author)}
-													</div>
-													<div key={comment.timestamp} className="postEditorAuthor">
-														{convertTimeStamp(comment)}
-													</div>
-												</div>
-						                		<div className="postEditorActionItem">
-													<button className="postEditorThumbsUp">
-														<FaThumbsUp onClick={() => this._handleUpVoteComment(comment)}/>
-													</button>
-												</div>
-												<div className="postEditorActionItem">
-													<button className="postEditorThumbsDown">
-														<FaThumbsDown onClick={() => this._handleDownVoteComment(comment)}/>
-													</button>
-												</div>
-												<div className="postEditorActionItem">
-													<div className="postEditorVoteScore">
-							                            <div key={comment.voteScore} className="postEditorVoteScoreCount">
-							                                {comment.voteScore}
-							                            </div>
-							                        </div>
-							                    </div>
-											</div>
-										</div>
-										<div className="commentEditorSubRow">
-											<div className="postEditorActionOnComment">
-												<button className="postEditorReplyToCommentAlign marg">
-													<div className="postEditorReplyToCommentText gold"
-														 onClick={() => this.openEditCommentModal(comment)}
-													>
-														Edit
-													</div>
-												</button>
-												<button className="postEditorReplyToCommentAlign marg">
-													<div className="postEditorReplyToCommentText gold"
-														 onClick={() => this._handleDeleteComment(comment)}
-													>
-														Delete
-													</div>
-												</button>
-											</div>
-										</div>
-									</div>
+									this._toggleComments(comment)
 								))}
 							</div>
 						</div>{/* COMMENT BLOCK END */}

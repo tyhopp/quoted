@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 // project components
 import Home from './Home'
 import CategoryFilter from './CategoryFilter'
-import PostCardDetails from './PostCardDetails'
 
 // project styles
 import '../styles/All.css'

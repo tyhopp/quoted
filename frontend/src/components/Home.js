@@ -5,7 +5,7 @@ import Loading from 'react-loading'
 import { Link, withRouter } from 'react-router-dom'
 
 // actions
-import { fetchOnePost, fetchPosts } from '../actions'
+import { fetchPosts } from '../actions'
 
 // icons
 import MdAddCircle from 'react-icons/lib/md/add-circle'
@@ -37,6 +37,15 @@ class Home extends Component {
 		detailsModalOpen: false,
 		displayedPost: undefined
 	}
+	componentWillMount(post) {
+		if (this.props.match.url !== '/') { // load post details conditionally
+			this.setState({ 
+				...this.state,
+				detailsModalOpen: true,
+				displayedPostId: this.props.match.params.post_id
+			})
+		}
+	}
 	componentWillReceiveProps(nextProps) {
 		if (this.props.post !== nextProps.post) {
 			this.props.dispatch(fetchPosts()) // re-fetch posts 
@@ -45,7 +54,7 @@ class Home extends Component {
 	componentDidMount() {
 		this.props.dispatch(fetchPosts()) // fetch posts 
 	}
-	openDetailsModal = (post) => {
+	openDetailsModal(post) {
 		this.setState({
 			...this.state,
 			detailsModalOpen: true,
@@ -103,7 +112,7 @@ class Home extends Component {
 							?   <div>
 									<div className="postEditorBg" />
 									<Loading type='bubbles' 
-											 delay={200} 
+											 delay={1000} 
 											 color='#fed80a' 
 											 className="loading"
 											 width={120} />

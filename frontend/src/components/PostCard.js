@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 // actions
-import { voteOnPost, fetchPosts } from '../actions'
+import { voteOnPost } from '../actions'
 
 // utils
 import { capitalize, convertTimeStamp } from '../utils/helpers'
