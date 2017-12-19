@@ -32,7 +32,7 @@ class Quoted extends Component {
 					<Route exact path="/things" render={() => ( <CategoryFilter category={this.state.things} /> )} />
 					<Route exact path="/:category/:post_id" render={() => ( <Home /> )} />
 					<Route exact path="/404" render={() => ( <NotFound /> )} />
-					<Redirect from={`/${deletedPost.category}/${deletedPost.id}`} to="/404" />
+					<Redirect from={`/${deletedPost.category}/${deletedPost.id}`} to="/" />
 			</div>
 		);
 	}

@@ -38,7 +38,7 @@ class Home extends Component {
 		displayedPost: undefined
 	}
 	componentWillMount(post) {
-		if (this.props.match.url !== '/') { // load post details conditionally
+		if ((!this.props.deletedPost) && (this.props.match.url !== '/')) { // load post details conditionally
 			this.setState({ 
 				...this.state,
 				detailsModalOpen: true,
