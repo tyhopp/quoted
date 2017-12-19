@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Modal from 'react-modal'
 import Loading from 'react-loading'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 // actions
 import { fetchCategoryPosts } from '../actions'
@@ -79,10 +79,10 @@ class CategoryFilter extends Component {
 							<div key={post.id} className="postContainer">
 								{/* map id: {post.id} */}
 								<PostCard post={post} />
-								<button className="openPostButton" 
+								<Link to={`/${post.category}/${post.id}`} className="openPostButton" 
 										onClick={() => this.openDetailsModal(post)}>
 									See more
-								</button>
+								</Link>
 							</div>
 						))}
 					</div>
