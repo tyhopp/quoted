@@ -42,6 +42,7 @@ function post (state = [], action) {
         case DELETE_POST :
             return {
                 ...state,
+                deletedPost: action.post
             }
         default : 
             return state;
