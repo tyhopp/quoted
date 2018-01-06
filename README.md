@@ -4,6 +4,9 @@ A place to quote and be quoted.
 
 This project was built with [React](https://github.com/facebook/react)/[Redux](https://github.com/reactjs/redux) for the [Udacity React Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019).
 
+## Demo
+![Demo for Quoted project](https://github.com/tyhopp/quoted/blob/master/quoted-demo.gif)
+
 ## Usage
 - `git clone https://github.com/tyhopp/quoted`
 - `cd quoted`
