@@ -26,3 +26,9 @@ This project's frontend will run on localhost://3000.
 ## Credits
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+## License
+
+MIT License
+
+Copyright (c) 2018 Ty Hopp
